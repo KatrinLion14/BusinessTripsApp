@@ -1,22 +1,24 @@
 package com.example.businesstripsapp.start_activity.presentation
 
+import com.example.businesstripsapp.start_activity.models.User
+
 data class State(
     val auth: Boolean = false
 )
 
 sealed class Effect {
     object ShowAuthError : Effect()
-    data class ToManActivity(val userId: String) : Effect()
+    data class ToMainActivity(val userId: String) : Effect()
 }
 
 sealed class Event {
     sealed class Ui : Event() {
         object Init : Ui()
-        data class ClickStart(val user: String)  : Ui()
+        data class ClickContinue(val email: String, val password: String)  : Ui()
     }
 
     sealed class Internal : Event() {
-        data class SuccessAuth(val user: String) : Internal()
+        data class SuccessAuth(val user: User) : Internal()
         object ErrorAuth : Internal()
     }
 }

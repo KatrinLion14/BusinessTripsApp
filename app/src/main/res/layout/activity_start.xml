@@ -23,14 +23,14 @@
             android:layout_height="48dp"
             android:layout_width="fill_parent"
             android:hint="@string/email"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/etPassword"
             android:layout_height="48dp"
             android:layout_width="fill_parent"
             android:hint="@string/password"
-            android:inputType="text" />
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <Button
