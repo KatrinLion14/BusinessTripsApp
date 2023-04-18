@@ -8,7 +8,7 @@ data class State(
 
 sealed class Effect {
     object ShowAuthError : Effect()
-    data class ToMainActivity(val userId: String) : Effect()
+    data class ToMainActivity(val token: String) : Effect()
 }
 
 sealed class Event {
@@ -18,7 +18,7 @@ sealed class Event {
     }
 
     sealed class Internal : Event() {
-        data class SuccessAuth(val user: User) : Internal()
+        data class SuccessAuth(val token: String) : Internal()
         object ErrorAuth : Internal()
     }
 }

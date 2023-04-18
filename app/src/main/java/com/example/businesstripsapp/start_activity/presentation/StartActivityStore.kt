@@ -2,8 +2,7 @@ package com.example.businesstripsapp.start_activity.presentation
 
 import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.network.ext.statusCodeHandler
-import com.example.businesstripsapp.start_activity.domain.UserRepository
-import com.example.businesstripsapp.start_activity.models.User
+import com.example.businesstripsapp.start_activity.domain.LoginRepository
 import com.example.businesstripsapp.start_activity.presentation.Event.Internal
 import com.example.businesstripsapp.start_activity.presentation.Event.Ui
 import io.reactivex.Observable
@@ -16,7 +15,7 @@ class Reducer :
     override fun Result.internal(event: Internal) = when (event) {
         is Internal.SuccessAuth -> {
             state { copy(auth = true) }
-            effects { +Effect.ToMainActivity(event.user.id) }
+            effects { +Effect.ToMainActivity(event.token) }
         }
         is Internal.ErrorAuth -> {
             effects { +Effect.ShowAuthError }
@@ -33,24 +32,18 @@ class Reducer :
 
 class MyActor : Actor<Command, Event> {
 
-    private val userRepository: UserRepository = UserRepository(
-        NetworkService.retrofit
+    private val loginRepository: LoginRepository = LoginRepository(
+        NetworkService().retrofit
     )
 
     override fun execute(command: Command): Observable<Event> = when (command) {
-        is Command.Auth -> userRepository
-            .getUser(command.email)
+        is Command.Auth -> loginRepository
+            .loginUser(command.email, command.password)
             .mapEvents(
                 eventMapper = { response ->
                     response.statusCodeHandler(
                         successHandler = {
-                            Internal.SuccessAuth(
-                                User(
-                                    command.email,
-                                    command.email,
-                                    command.password
-                                )
-                            )
+                            Internal.SuccessAuth(it)
                         },
                         errorHandler = { Internal.ErrorAuth }
                     )

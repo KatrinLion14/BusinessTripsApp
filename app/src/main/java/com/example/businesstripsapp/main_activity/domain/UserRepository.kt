@@ -1,4 +1,4 @@
-package com.example.businesstripsapp.start_activity.domain
+package com.example.businesstripsapp.main_activity.domain
 
 import com.example.businesstripsapp.start_activity.models.User
 import io.reactivex.Observable

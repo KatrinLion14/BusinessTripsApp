@@ -44,12 +44,12 @@ class StartActivity : ElmActivity<Event, Effect, State>(R.layout.activity_start)
 
     override fun handleEffect(effect: Effect) = when (effect) {
         Effect.ShowAuthError -> Toast.makeText(applicationContext, "Invalid e-mail or password", Toast.LENGTH_SHORT).show()
-        is Effect.ToMainActivity -> toUserMainActivity(effect.userId)
+        is Effect.ToMainActivity -> toUserMainActivity(effect.token)
     }
 
     private fun toUserMainActivity(id: String) {
         val intent: Intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("userId", id)
+        intent.putExtra("token", id)
         startActivity(intent)
     }
 }
