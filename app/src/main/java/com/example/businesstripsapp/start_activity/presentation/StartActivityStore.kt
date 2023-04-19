@@ -33,7 +33,7 @@ class Reducer :
 class MyActor : Actor<Command, Event> {
 
     private val loginRepository: LoginRepository = LoginRepository(
-        NetworkService().retrofit
+        NetworkService.instance.getAuthService()
     )
 
     override fun execute(command: Command): Observable<Event> = when (command) {

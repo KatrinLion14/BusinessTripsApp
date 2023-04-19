@@ -10,6 +10,8 @@ import com.example.businesstripsapp.start_activity.presentation.Effect
 import com.example.businesstripsapp.start_activity.presentation.Event
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.main_activity.MainActivity
+import com.example.businesstripsapp.main_activity.domain.UserRepository
+import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.start_activity.presentation.State
 import com.example.businesstripsapp.start_activity.presentation.storeFactory
 import vivid.money.elmslie.android.base.ElmActivity
@@ -47,9 +49,10 @@ class StartActivity : ElmActivity<Event, Effect, State>(R.layout.activity_start)
         is Effect.ToMainActivity -> toUserMainActivity(effect.token)
     }
 
-    private fun toUserMainActivity(id: String) {
+    private fun toUserMainActivity(token: String) {
+        NetworkService.instance.setService(token)
         val intent: Intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("token", id)
+        intent.putExtra("token", token)
         startActivity(intent)
     }
 }
