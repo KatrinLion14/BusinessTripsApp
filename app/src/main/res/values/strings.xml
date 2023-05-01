@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">BusinessTripsApp</string>
-    <string name="email">e-mail</string>
-    <string name="password">password</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="requests_title">Заявки</string>
+    <string name="outgoing_requests">Исходящие</string>
+    <string name="incoming_requests">Входящие</string>
+    <string name="outgoing_requests_content_description">Outgoing Requests</string>
+    <string name="incoming_requests_content_description">Incoming Requests</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="requests">Requests</string>
     <string name="no_data">Нет данных</string>
     <string name="trip_number">Номер</string>
     <string name="trip_status">Статус</string>

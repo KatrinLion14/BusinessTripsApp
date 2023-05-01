@@ -3,49 +3,92 @@
     <style name="MainTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/primary_600</item>
     </style>
-    <style name="ButtonPrimary">
-        <item name="android:layout_width">379dp</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:background">@drawable/button_background_primary</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/base_900</item>
+
+    <style name="Text_H1_28pt" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">
+            28sp
+        </item>
+        <item name="fontFamily">
+            @font/open_sans_regular
+        </item>
     </style>
-    <style name="ButtonSecondary" parent="ButtonPrimary">
-        <item name="android:background">@drawable/button_background_secondary</item>
-        <item name="android:textColor">@color/primary_600</item>
+
+    <style name="Text_H2_20pt" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">
+            20sp
+        </item>
+        <item name="fontFamily">
+            @font/open_sans_regular
+        </item>
     </style>
-    <style name="ButtonText" parent="ButtonSecondary">
-        <item name="android:background">@android:color/transparent</item>
+
+    <style name="Text_Subtitle_18pt" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">
+            18sp
+        </item>
+        <item name="fontFamily">
+            @font/open_sans_semi_bold
+        </item>
     </style>
-    <style name="TextHeader1">
-        <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/primary_600</item>
-        <item name="android:textSize">28sp</item>
-        <item name="android:letterSpacing">-0.015</item>
+
+    <style name="Text_Body_16pt" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">
+            16sp
+        </item>
+        <item name="fontFamily">
+            @font/open_sans_regular
+        </item>
     </style>
-    <style name="TextHeader2" parent="TextHeader1">
-        <item name="android:textSize">22sp</item>
+
+    <style name="Text_Body2_14pt" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">
+            14sp
+        </item>
+        <item name="fontFamily">
+            @font/open_sans_light
+        </item>
     </style>
-    <style name="TextHeader3" parent="TextHeader1">
-        <item name="android:textSize">18sp</item>
+
+    <style name="Text_Button_14pt" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">
+            14sp
+        </item>
+        <item name="fontFamily">
+            @font/open_sans_semi_bold
+        </item>
+        <item name="android:textAllCaps">true</item>
     </style>
-    <style name="Body1">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/base_50</item>
+
+    <style name="Text_Secondary_12pt" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">
+            12sp
+        </item>
+        <item name="fontFamily">
+            @font/open_sans_regular
+        </item>
     </style>
-    <style name="Body2" parent="Body1">
-        <item name="android:textSize">14sp</item>
+
+
+    <style name="Text_Caption_10pt" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">
+            10sp
+        </item>
+        <item name="fontFamily">
+            @font/open_sans_regular
+        </item>
     </style>
-    <style name="Body3" parent="Body2">
-        <item name="android:textSize">12sp</item>
+
+    <style name="GenericProgressBackground" parent="android:Theme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:gravity">center</item>
     </style>
-    <style name="Caption" parent="Body3">
-        <item name="android:textColor">@color/base_400</item>
-    </style>
-    <style name="ProgressBarSpinner" parent="Widget.AppCompat.ProgressBar">
+    <style name="GenericProgressIndicator" parent="@android:style/Widget.ProgressBar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:indeterminateTint">@color/primary_600</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateTint">@color/info_600</item>
     </style>
+
 </resources>
