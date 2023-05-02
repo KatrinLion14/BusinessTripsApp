@@ -16,7 +16,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".main_activity.MainActivity"
-            android:exported="false" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".start_activity.StartActivity"
             android:exported="true"
@@ -25,6 +26,25 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".trips_activity.TripsActivity"
+            android:exported="true"
+            android:theme="@style/MainTheme">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".trips_history_activity.TripsHistoryActivity"
+            android:exported="true"
+            android:theme="@style/MainTheme">
+        </activity>
+        <activity
+            android:name=".trip_info_activity.TripInfoActivity"
+            android:exported="true"
+            android:theme="@style/MainTheme">
         </activity>
     </application>
 
