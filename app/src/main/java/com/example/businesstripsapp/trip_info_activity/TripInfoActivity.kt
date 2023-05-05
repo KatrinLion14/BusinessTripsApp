@@ -29,6 +29,7 @@ class TripInfoActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trip
 
         val tripId = intent.getStringExtra("tripId")?: ""
 
+<<<<<<< HEAD
         store.accept(Event.Ui.MakeToolbarTitle(tripId))
         store.accept(Event.Ui.ShowTripInfo(tripId))
 
@@ -76,6 +77,9 @@ class TripInfoActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trip
                 Event.Ui.ClickMap(findViewById<TextView>(R.id.tripAccommodation).text.toString())
             )
         }
+=======
+        LoadTripInfo(tripId)
+>>>>>>> 7210428 (create trip_info layout)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -100,6 +104,7 @@ class TripInfoActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trip
         is Effect.ShowLoadingError -> Toast.makeText(applicationContext, "Loading Error", Toast.LENGTH_SHORT).show()
         is Effect.BackToPreviousActivity -> finish()
         is Effect.ShowTripInfo -> ShowTripInfo(effect.trip)
+<<<<<<< HEAD
         is Effect.ShowToolbarTitle -> AddTripIdToToolbarTitle(effect.tripId)
 
         is Effect.ShowCalendar -> {}
@@ -112,6 +117,15 @@ class TripInfoActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trip
         findViewById<TextView>(R.id.tripStatus).text = trip.tripStatus
         findViewById<TextView>(R.id.tripDescription).text = trip.destination.description
         findViewById<TextView>(R.id.tripRequest).text = trip.requestId
+=======
+    }
+
+    private fun ShowTripInfo(trip : Trip) {
+        findViewById<TextView>(R.id.tripNumber).text = "№" + trip.id
+        findViewById<TextView>(R.id.tripStatus).text = trip.tripStatus
+        findViewById<TextView>(R.id.tripDescription).text = trip.destination.description
+        findViewById<TextView>(R.id.tripRequest).text = "№" +  trip.requestId
+>>>>>>> 7210428 (create trip_info layout)
         findViewById<TextView>(R.id.tripStartDate).text = trip.startDate
         findViewById<TextView>(R.id.tripEndDate).text = trip.endDate
         findViewById<TextView>(R.id.tripAddress).text = trip.destination.office.address
@@ -121,8 +135,15 @@ class TripInfoActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trip
         findViewById<TextView>(R.id.tripCheckOutDate).text = trip.endDate
     }
 
+<<<<<<< HEAD
     private fun AddTripIdToToolbarTitle(tripId: String) {
         val toolbar = supportActionBar
         toolbar!!.title = toolbar.title.toString() + tripId
+=======
+    private fun LoadTripInfo(tripId: String) {
+        store.accept(
+            Event.Ui.ShowTripInfo(tripId)
+        )
+>>>>>>> 7210428 (create trip_info layout)
     }
 }
