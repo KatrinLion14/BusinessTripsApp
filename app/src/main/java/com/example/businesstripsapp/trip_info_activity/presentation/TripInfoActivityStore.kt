@@ -25,7 +25,7 @@ class Reducer :
             effects { +Effect.BackToPreviousActivity }
         }
         is Event.Ui.ShowTripInfo -> {
-            commands { +Command.ShowTrip(event.tripId) }
+            commands { +Command.LoadTrip(event.tripId) }
         }
         is Event.Ui.Init -> {}
     }
@@ -38,7 +38,7 @@ class MyActor : Actor<Command, Event> {
     )
 
     override fun execute(command: Command): Observable<Event> = when (command) {
-        is Command.ShowTrip -> tripInfoRepository
+        is Command.LoadTrip -> tripInfoRepository
             .getTrip(command.tripId)
             .mapEvents(
                 eventMapper = { response ->

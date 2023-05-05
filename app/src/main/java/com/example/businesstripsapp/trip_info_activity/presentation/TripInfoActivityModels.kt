@@ -27,5 +27,5 @@ sealed class Event {
 }
 
 sealed class Command {
-    data class ShowTrip(val tripId: String) : Command()
+    data class LoadTrip(val tripId: String) : Command()
 }

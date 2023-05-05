@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.businesstripsapp.R
-import com.example.businesstripsapp.trips_activity.models.Trip
+import com.example.businesstripsapp.trips_history_activity.models.Trip
 
 class TripsHistoryAdapter(val tripsArray: Array<Trip>, val listener: Listener): RecyclerView.Adapter<TripHistoryViewHolder>() {
 

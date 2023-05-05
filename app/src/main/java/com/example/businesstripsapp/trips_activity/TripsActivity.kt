@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.trip_info_activity.TripInfoActivity
+import com.example.businesstripsapp.trips_activity.models.Accommodation
+import com.example.businesstripsapp.trips_activity.models.Destination
+import com.example.businesstripsapp.trips_activity.models.Office
 import com.example.businesstripsapp.trips_activity.models.Trip
 import com.example.businesstripsapp.trips_activity.presentation.Effect
 import com.example.businesstripsapp.trips_activity.presentation.Event
@@ -21,19 +24,18 @@ import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmActivity
 import vivid.money.elmslie.core.store.Store
 import java.util.Base64
+import java.util.Date
 
 
 class TripsActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trips), TripsAdapter.Listener {
     override val initEvent: Event = Event.Ui.Init
 
     var tripsArray : Array<Trip> = arrayOf(
-        Trip("1023325457", "Предстоит", "Москва", "15.03.2023"),
-        Trip("4634636536", "Предстоит", "Пермь", "13.04.2023"),
-        Trip("3524523523", "Предстоит", "Санкт-Петербург", "21.05.2023"),
-        Trip("3465363563", "Предстоит", "Нижний Новгород", "07.07.2023"),
-        Trip("2534534534", "Отменена", "Владивосток", "16.07.2023"),
-        Trip("1123142345", "Отменена", "Самара", "17.08.2023")
+        Trip("1023325457", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"),
+        Trip("4634636536", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"),
+        Trip("3524523523", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"),
     )
+
     private var adapter = TripsAdapter(tripsArray, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
