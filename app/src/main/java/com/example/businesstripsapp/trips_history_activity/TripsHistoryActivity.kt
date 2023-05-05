@@ -4,12 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.trip_info_activity.TripInfoActivity
-import com.example.businesstripsapp.trips_activity.models.Trip
+import com.example.businesstripsapp.trips_history_activity.models.Accommodation
+import com.example.businesstripsapp.trips_history_activity.models.Destination
+import com.example.businesstripsapp.trips_history_activity.models.Office
+import com.example.businesstripsapp.trips_history_activity.models.Trip
 import com.example.businesstripsapp.trips_history_activity.presentation.Effect
 import com.example.businesstripsapp.trips_history_activity.presentation.Event
 import com.example.businesstripsapp.trips_history_activity.presentation.State
@@ -29,11 +32,14 @@ class TripsHistoryActivity: ElmActivity<Event, Effect, State>(R.layout.activity_
 
         setSupportActionBar(findViewById(R.id.tripsHistoryToolbar))
 
-        val tripsArray = intent.getParcelableArrayExtra("tripsArray")?: arrayOf()
+        val tripsArray = arrayOf(Trip("1023325457", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"),
+            Trip("4634636536", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"))
 
-        adapter = TripsHistoryAdapter(arrayOf(Trip("1023325457", "Предстоит", "Москва", "15.03.2023"), Trip("4634636536", "Предстоит", "Пермь", "13.04.2023")), this)
+        val userId = "132"
 
-        makeTripList(arrayOf(Trip("1023325457", "Предстоит", "Москва", "15.03.2023"), Trip("4634636536", "Предстоит", "Пермь", "13.04.2023")))
+        adapter = TripsHistoryAdapter(tripsArray, this)
+
+        loadAllTrips(userId)
     }
 
     private fun initRecyclerView() {
@@ -65,11 +71,12 @@ class TripsHistoryActivity: ElmActivity<Event, Effect, State>(R.layout.activity_
         is Effect.ToTripInformationActivity -> toTripInfo(effect.tripId)
         is Effect.BackToTripsActivity -> finish()
         is Effect.ShowAllTrips -> initRecyclerView()
+        is Effect.ShowLoadingError -> Toast.makeText(applicationContext, "Loading error", Toast.LENGTH_SHORT).show()
     }
 
-    private fun makeTripList(tripsArray: Array<Trip>) {
+    private fun loadAllTrips(userId : String) {
         store.accept(
-            Event.Internal.MakeTripList(tripsArray)
+            Event.Ui.ShowTripList(userId)
         )
     }
 

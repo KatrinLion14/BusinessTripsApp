@@ -5,6 +5,7 @@ data class Trip (
     val tripStatus: String,
     val accommodation: Accommodation,
     val destination: Destination,
-    val requestId: String
-
+    val requestId: String,
+    val startDate: String,
+    val endDate: String
 )

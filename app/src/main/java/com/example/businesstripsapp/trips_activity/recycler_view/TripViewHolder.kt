@@ -11,8 +11,8 @@ class TripViewHolder(item: View): RecyclerView.ViewHolder(item) {
     fun bind(trip: Trip, listener: TripsAdapter.Listener) {
         binding.tripId.text = "№" + trip.id
         binding.tripStatus.text = trip.tripStatus
-        binding.destinationCity.text = trip.destinationCity
-        binding.tripDate.text = trip.tripDate
+        binding.destinationCity.text = trip.destination.office.address
+        binding.tripDate.text = trip.startDate
 
         itemView.setOnClickListener {
             listener.onClick(trip)

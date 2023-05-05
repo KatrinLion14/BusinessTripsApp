@@ -1,4 +1,4 @@
-package com.example.businesstripsapp.trips_activity.models
+package com.example.businesstripsapp.trips_history_activity.models
 
 
 
