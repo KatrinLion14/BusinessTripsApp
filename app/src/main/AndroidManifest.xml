@@ -57,10 +57,10 @@
             android:name=".trips_activity.TripsActivity"
             android:exported="true"
             android:theme="@style/MainTheme">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".trips_history_activity.TripsHistoryActivity"

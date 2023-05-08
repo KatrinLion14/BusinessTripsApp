@@ -4,4 +4,16 @@
     <string name="password">password</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_data">Нет данных</string>
+    <string name="trip_number">Номер</string>
+    <string name="trip_status">Статус</string>
+    <string name="trip_description">Описание командировки</string>
+    <string name="trip_request">Заявка</string>
+    <string name="trip_start_date">Дата начала</string>
+    <string name="trip_end_date">Дата завершения</string>
+    <string name="trip_address">Место командирования</string>
+    <string name="trip_tickets">Билеты</string>
+    <string name="trip_accomodation">Гостиница</string>
+    <string name="trip_check_in_date">Дата заселения</string>
+    <string name="trip_check_out_date">Дата выселения</string>
 </resources>
