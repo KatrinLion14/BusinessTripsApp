@@ -1,7 +1,5 @@
 package com.example.businesstripsapp.start_activity.presentation
 
-import com.example.businesstripsapp.start_activity.models.User
-
 data class State(
     val auth: Boolean = false
 )
