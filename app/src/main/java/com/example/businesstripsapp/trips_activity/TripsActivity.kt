@@ -45,7 +45,7 @@ class TripsActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trips),
         setSupportActionBar(findViewById(R.id.tripsToolbar))
 
         val token = intent.getStringExtra("token")?: ""
-        val userId = getUserId(token)
+        val userId = "123" //getUserId(token)
 
         initRecyclerView()
 
