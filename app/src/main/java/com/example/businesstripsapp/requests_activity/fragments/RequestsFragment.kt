@@ -1,4 +1,7 @@
 package com.example.businesstripsapp.requests_activity.fragments
 
-class RequestsFragment {
+import androidx.fragment.app.Fragment
+
+class RequestsFragment : Fragment() {
+
 }

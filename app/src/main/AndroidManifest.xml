@@ -43,6 +43,7 @@
             android:name=".main_activity.MainActivity"
             android:exported="false"
             android:theme="@style/MainTheme" />
+
         <activity
             android:name=".start_activity.StartActivity"
             android:exported="true"
@@ -52,6 +53,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".requests_activity.RequestsActivity"
+            android:exported="true">
+        </activity>
+
         <activity
             android:name=".trips_activity.TripsActivity"
             android:exported="true"
