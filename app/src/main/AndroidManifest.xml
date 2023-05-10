@@ -16,7 +16,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".main_activity.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".start_activity.StartActivity"
             android:exported="true"

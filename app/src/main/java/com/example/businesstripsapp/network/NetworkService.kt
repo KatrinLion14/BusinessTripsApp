@@ -35,6 +35,7 @@ class NetworkService {
 
     private var retrofit: Retrofit? = null
     private var authRetrofit: Retrofit? = null
+    private var serviceToken: String? = null
 
     fun getAuthService(): Retrofit {
         if (authRetrofit == null) {
@@ -66,6 +67,12 @@ class NetworkService {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+
+        serviceToken = token
+    }
+
+    fun getToken(): String {
+        return serviceToken!!
     }
 
     fun destroyService() {

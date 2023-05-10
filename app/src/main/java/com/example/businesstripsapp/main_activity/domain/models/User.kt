@@ -1,4 +1,4 @@
-package com.example.businesstripsapp.start_activity.models
+package com.example.businesstripsapp.main_activity.domain.models
 
 data class User(
     val id: String,

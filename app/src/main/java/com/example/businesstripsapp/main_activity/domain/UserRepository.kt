@@ -1,6 +1,8 @@
 package com.example.businesstripsapp.main_activity.domain
 
-import com.example.businesstripsapp.start_activity.models.User
+import com.example.businesstripsapp.main_activity.domain.models.Request
+import com.example.businesstripsapp.main_activity.domain.models.Trip
+import com.example.businesstripsapp.main_activity.domain.models.User
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -10,6 +12,16 @@ class UserRepository(retrofit: Retrofit) {
 
     fun getUser(id: String): Observable<Response<User>> {
         return userApi.getUser(id)
+            .toObservable()
+    }
+
+    fun getRequests(id: String): Observable<Response<List<Request>>> {
+        return userApi.getRequests(id)
+            .toObservable()
+    }
+
+    fun getTrips(id: String): Observable<Response<List<Trip>>> {
+        return userApi.getTrips(id)
             .toObservable()
     }
 }
