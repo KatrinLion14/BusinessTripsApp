@@ -52,7 +52,6 @@ class StartActivity : ElmActivity<Event, Effect, State>(R.layout.activity_start)
     private fun toUserMainActivity(token: String) {
         NetworkService.instance.setService(token)
         val intent: Intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("token", token)
         startActivity(intent)
     }
 }
