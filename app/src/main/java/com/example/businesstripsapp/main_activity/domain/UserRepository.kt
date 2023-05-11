@@ -1,5 +1,6 @@
 package com.example.businesstripsapp.main_activity.domain
 
+import com.example.businesstripsapp.main_activity.domain.models.Notification
 import com.example.businesstripsapp.main_activity.domain.models.Request
 import com.example.businesstripsapp.main_activity.domain.models.Trip
 import com.example.businesstripsapp.main_activity.domain.models.User
@@ -22,6 +23,11 @@ class UserRepository(retrofit: Retrofit) {
 
     fun getTrips(id: String): Observable<Response<List<Trip>>> {
         return userApi.getTrips(id)
+            .toObservable()
+    }
+
+    fun getNotifications(id: String): Observable<Response<List<Notification>>> {
+        return userApi.getNotifications(id)
             .toObservable()
     }
 }

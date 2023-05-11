@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +12,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.BusinessTripsApp"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".create_user_activity.CreateUserActivity"
+            android:exported="false"
+            android:parentActivityName=".main_activity.MainActivity"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".notification_details_activity.NotificationDetailsActivity"
+            android:exported="false"
+            android:parentActivityName=".notification_activity.NotificationActivity"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".notification_activity.NotificationActivity"
+            android:exported="false"
+            android:parentActivityName=".main_activity.MainActivity"
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".main_activity.MainActivity"
             android:exported="false"
@@ -24,6 +39,7 @@
             android:theme="@style/MainTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

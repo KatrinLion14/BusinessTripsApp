@@ -1,8 +1,8 @@
-package com.example.businesstripsapp.main_activity.main_fragment.presentation
+package com.example.businesstripsapp.main_activity.home_fragment.presentation
 
 import com.example.businesstripsapp.main_activity.domain.UserRepository
-import com.example.businesstripsapp.main_activity.main_fragment.presentation.Event.Internal
-import com.example.businesstripsapp.main_activity.main_fragment.presentation.Event.Ui
+import com.example.businesstripsapp.main_activity.home_fragment.presentation.Event.Internal
+import com.example.businesstripsapp.main_activity.home_fragment.presentation.Event.Ui
 import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.network.ext.statusCodeHandler
 import io.reactivex.Observable
@@ -39,7 +39,7 @@ class Reducer :
             commands { listOf(+Command.LoadRequests(event.id), +Command.LoadTrips(event.id)) }
         }
 
-        is Ui.ClickNotificaitons -> {
+        is Ui.ClickNotifications -> {
             effects { +Effect.ToNotificationActivity }
         }
 
@@ -51,9 +51,16 @@ class Reducer :
             effects { +Effect.ToTripsActivity }
         }
 
-        is Ui.PullToRefrech -> {
+        is Ui.PullToRefresh -> {
             state { copy(loading = true) }
             commands { listOf(+Command.LoadRequests(event.id), +Command.LoadTrips(event.id)) }
+        }
+
+        Ui.CLickCreateUser -> {
+            effects { +Effect.ToCreateUserActivity }
+        }
+        Ui.ClickCreateOffice -> {
+            effects { +Effect.ToCreateOfficeActivity }
         }
     }
 }

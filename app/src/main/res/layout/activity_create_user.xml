@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_800"
+    tools:context=".create_user_activity.CreateUserActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/buttonContinue"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/userEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    style="@style/TextHeader2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E-mail"
+                    android:textColor="@color/base_50" />
+                <EditText
+                    android:id="@+id/userEmailData"
+                    style="@style/Body1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/base_700"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:padding="8dp"
+                    android:textColor="@color/base_50"
+                    android:textColorHint="@color/base_500" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/userPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/userEmail"
+                app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    style="@style/TextHeader2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Пароль"
+                    android:textColor="@color/base_50" />
+                <EditText
+                    android:id="@+id/userPasswordData"
+                    style="@style/Body1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/base_700"
+                    android:hint="пароль"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="@color/base_50"
+                    android:textColorHint="@color/base_500" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/firstName"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/userPassword"
+                app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    style="@style/TextHeader2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Фамилия"
+                    android:textColor="@color/base_50" />
+                <EditText
+                    android:id="@+id/firstNameData"
+                    style="@style/Body1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/base_700"
+                    android:hint="фамилия"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="@color/base_50"
+                    android:textColorHint="@color/base_500" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondName"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/firstName"
+                app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    style="@style/TextHeader2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Имя"
+                    android:textColor="@color/base_50" />
+                <EditText
+                    android:id="@+id/secondNameData"
+                    style="@style/Body1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/base_700"
+                    android:hint="имя"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="@color/base_50"
+                    android:textColorHint="@color/base_500" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/role"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/secondName"
+                app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    style="@style/TextHeader2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Роль"
+                    android:textColor="@color/base_50" />
+                <EditText
+                    android:id="@+id/roleData"
+                    style="@style/Body1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/base_700"
+                    android:hint="admin или user"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="@color/base_50"
+                    android:textColorHint="@color/base_500" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/subordinates"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/role"
+                app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    style="@style/TextHeader2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Сотрудники в рассмотрении"
+                    android:textColor="@color/base_50" />
+                <EditText
+                    android:id="@+id/subordinatesData"
+                    style="@style/Body1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/base_700"
+                    android:hint="id через пробелы"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="@color/base_50"
+                    android:textColorHint="@color/base_500" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/buttonContinue"
+        style="@style/ButtonPrimary"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="30dp"
+        android:text="создать"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
