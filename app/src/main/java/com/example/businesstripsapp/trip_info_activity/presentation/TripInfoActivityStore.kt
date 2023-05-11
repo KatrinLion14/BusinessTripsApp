@@ -27,6 +27,18 @@ class Reducer :
         is Event.Ui.ShowTripInfo -> {
             commands { +Command.LoadTrip(event.tripId) }
         }
+        is Event.Ui.ClickCalendar -> {
+            effects { +Effect.ShowCalendar(event.date) }
+        }
+        is Event.Ui.ClickMap -> {
+            effects { +Effect.ShowMap(event.address) }
+        }
+        is Event.Ui.ClickRequestField -> {
+            effects { +Effect.ToRequestInfo(event.requestId) }
+        }
+        is Event.Ui.MakeToolbarTitle -> {
+            effects { +Effect.ShowToolbarTitle(event.tripId) }
+        }
         is Event.Ui.Init -> {}
     }
 }
