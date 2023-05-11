@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.businesstripsapp.R
-import com.example.businesstripsapp.main_activity.main_fragment.HomeFragment
+import com.example.businesstripsapp.main_activity.home_fragment.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

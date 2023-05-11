@@ -1,4 +1,4 @@
-package com.example.businesstripsapp.main_activity.main_fragment.presentation
+package com.example.businesstripsapp.main_activity.home_fragment.presentation
 
 import com.example.businesstripsapp.main_activity.domain.models.Request
 import com.example.businesstripsapp.main_activity.domain.models.Trip
@@ -15,15 +15,19 @@ sealed class Effect {
     object ToNotificationActivity : Effect()
     object ToTripsActivity : Effect()
     object ToRequestsActivity : Effect()
+    object ToCreateUserActivity : Effect()
+    object ToCreateOfficeActivity : Effect()
 }
 
 sealed class Event {
     sealed class Ui : Event() {
         data class Init(var id: String) : Ui()
-        data class PullToRefrech(var id: String) : Ui()
+        data class PullToRefresh(var id: String) : Ui()
         object ClickRequests : Ui()
         object ClickTrips : Ui()
-        object ClickNotificaitons : Ui()
+        object ClickNotifications : Ui()
+        object CLickCreateUser : Ui()
+        object ClickCreateOffice : Ui()
     }
 
     sealed class Internal : Event() {

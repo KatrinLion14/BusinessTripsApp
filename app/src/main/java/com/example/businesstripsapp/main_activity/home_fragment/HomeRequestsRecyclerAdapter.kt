@@ -1,4 +1,4 @@
-package com.example.businesstripsapp.main_activity.main_fragment
+package com.example.businesstripsapp.main_activity.home_fragment
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import com.example.businesstripsapp.main_activity.domain.models.constant.Request
 import com.example.businesstripsapp.main_activity.domain.models.constant.RequestStatus.AWAIT_CHANGES
 import com.example.businesstripsapp.main_activity.domain.models.constant.RequestStatus.DECLINED
 import com.example.businesstripsapp.main_activity.domain.models.constant.RequestStatus.PENDING
-import com.example.businesstripsapp.main_activity.main_fragment.HomeRequestsRecyclerAdapter.HomeRequestViewHolder
+import com.example.businesstripsapp.main_activity.home_fragment.HomeRequestsRecyclerAdapter.HomeRequestViewHolder
 
 class HomeRequestsRecyclerAdapter(private val dataset: List<Request>, private val view: View) :
     RecyclerView.Adapter<HomeRequestViewHolder>() {

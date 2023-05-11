@@ -1,4 +1,4 @@
-package com.example.businesstripsapp.main_activity.main_fragment
+package com.example.businesstripsapp.main_activity.home_fragment
 
 import android.annotation.SuppressLint
 import com.example.businesstripsapp.R
@@ -11,7 +11,7 @@ import com.example.businesstripsapp.main_activity.domain.models.Trip
 import com.example.businesstripsapp.main_activity.domain.models.constant.TripStatus.CANCELLED
 import com.example.businesstripsapp.main_activity.domain.models.constant.TripStatus.COMPLETED
 import com.example.businesstripsapp.main_activity.domain.models.constant.TripStatus.PENDING
-import com.example.businesstripsapp.main_activity.main_fragment.HomeTripsRecyclerAdapter.HomeTripViewHolder
+import com.example.businesstripsapp.main_activity.home_fragment.HomeTripsRecyclerAdapter.HomeTripViewHolder
 
 class HomeTripsRecyclerAdapter(private val dataset: List<Trip>, private val view: View) :
     RecyclerView.Adapter<HomeTripViewHolder>() {
