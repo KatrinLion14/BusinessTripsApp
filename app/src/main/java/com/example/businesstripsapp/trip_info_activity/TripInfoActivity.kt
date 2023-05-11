@@ -111,7 +111,7 @@ class TripInfoActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trip
         findViewById<TextView>(R.id.tripNumber).text = trip.id
         findViewById<TextView>(R.id.tripStatus).text = trip.tripStatus
         findViewById<TextView>(R.id.tripDescription).text = trip.destination.description
-        findViewById<TextView>(R.id.tripRequest).text = "№" +  trip.requestId
+        findViewById<TextView>(R.id.tripRequest).text = trip.requestId
         findViewById<TextView>(R.id.tripStartDate).text = trip.startDate
         findViewById<TextView>(R.id.tripEndDate).text = trip.endDate
         findViewById<TextView>(R.id.tripAddress).text = trip.destination.office.address

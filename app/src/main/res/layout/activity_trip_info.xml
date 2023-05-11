@@ -67,8 +67,7 @@
 
                 </LinearLayout>
 
-
-<<<<<<< HEAD
+                
                 <LinearLayout
                     android:id="@+id/statusLayout"
                     android:layout_width="match_parent"
@@ -512,6 +511,6 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-    
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
