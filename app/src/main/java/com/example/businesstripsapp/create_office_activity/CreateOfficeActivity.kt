@@ -1,4 +1,4 @@
-package com.example.businesstripsapp.create_user_activity
+package com.example.businesstripsapp.create_office_activity
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,15 +8,15 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
 import com.example.businesstripsapp.R
-import com.example.businesstripsapp.create_user_activity.presentation.Effect
-import com.example.businesstripsapp.create_user_activity.presentation.Event
-import com.example.businesstripsapp.create_user_activity.presentation.State
-import com.example.businesstripsapp.create_user_activity.presentation.storeFactory
-import com.example.businesstripsapp.main_activity.domain.models.User
+import com.example.businesstripsapp.create_office_activity.domain.models.Office
+import com.example.businesstripsapp.create_office_activity.presentation.Effect
+import com.example.businesstripsapp.create_office_activity.presentation.Event
+import com.example.businesstripsapp.create_office_activity.presentation.State
+import com.example.businesstripsapp.create_office_activity.presentation.storeFactory
 import vivid.money.elmslie.android.base.ElmActivity
 import vivid.money.elmslie.core.store.Store
 
-class CreateUserActivity : ElmActivity<Event, Effect, State>(R.layout.activity_create_user) {
+class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity_create_office) {
     override val initEvent: Event = Event.Ui.Init
     private var createButton: Button? = null
     private var progressBar: FrameLayout? = null
@@ -25,37 +25,27 @@ class CreateUserActivity : ElmActivity<Event, Effect, State>(R.layout.activity_c
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_user)
+        setContentView(R.layout.activity_create_office)
         createButton = findViewById(R.id.buttonContinue)
         progressBar = findViewById(R.id.progressBarContainer)
 
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.apply {
-            title = "Добавление пользователя"
+            title = "Добавление офиса"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
 
-        val emailText = findViewById<EditText>(R.id.userEmailData)
-        val passwordText = findViewById<EditText>(R.id.userPasswordData)
-        val firstNameText = findViewById<EditText>(R.id.firstNameData)
-        val secondNameText = findViewById<EditText>(R.id.secondNameData)
-        val roleText = findViewById<EditText>(R.id.roleData)
-        val subordinateId = findViewById<EditText>(R.id.subordinatesData)
+        val addressText = findViewById<EditText>(R.id.officeAddressData)
+        val descriptionText = findViewById<EditText>(R.id.officeDescriptionData)
         createButton?.setOnClickListener {
-            if (!isFieldEmpty(emailText) && !isFieldEmpty(passwordText) &&
-                !isFieldEmpty(firstNameText) && !isFieldEmpty(secondNameText) && !isFieldEmpty(roleText)
-            ) {
+            if (!isFieldEmpty(addressText) && !isFieldEmpty(descriptionText)) {
                 store.accept(
                     Event.Ui.CreateClick(
-                        User(
-                            email = emailText.text.toString(),
-                            password = passwordText.text.toString(),
-                            firstName = firstNameText.text.toString(),
-                            secondName = secondNameText.text.toString(),
-                            userRole = roleText.text.toString()
-                        ),
-                        subordinateId.text.toString()
+                        Office(
+                            address = addressText.text.toString(),
+                            description = descriptionText.text.toString()
+                        )
                     )
                 )
             }
@@ -78,20 +68,17 @@ class CreateUserActivity : ElmActivity<Event, Effect, State>(R.layout.activity_c
             "Problems with your connection",
             Toast.LENGTH_SHORT
         ).show()
-        is Effect.ShowErrorGetSubordinates -> Toast.makeText(
-            this,
-            "User will be created without subordinates",
-            Toast.LENGTH_SHORT
-        ).show()
-        is Effect.ShowErrorCreateUser -> Toast.makeText(
+
+        is Effect.ShowErrorCreateOffice -> Toast.makeText(
             this,
             "Unexpected error while creating",
             Toast.LENGTH_SHORT
         ).show()
+
         is Effect.ReturnToHome -> {
             Toast.makeText(
                 this,
-                "User created",
+                "Office created",
                 Toast.LENGTH_SHORT
             ).show()
             this.finish()

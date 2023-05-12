@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
+import com.example.businesstripsapp.create_office_activity.CreateOfficeActivity
 import com.example.businesstripsapp.create_user_activity.CreateUserActivity
 import com.example.businesstripsapp.main_activity.home_fragment.presentation.Effect
 import com.example.businesstripsapp.main_activity.home_fragment.presentation.Event
@@ -159,8 +160,8 @@ class HomeFragment : ElmFragment<Event, Effect, State>() {
     }
 
     private fun toCreateOfficeActivity() {
-//        val intent = Intent(this.context, CreateOfficeActivity::class.java)
-//        startActivity(intent)
+        val intent = Intent(this.context, CreateOfficeActivity::class.java)
+        startActivity(intent)
     }
 
     private fun toCreateUserActivity() {
