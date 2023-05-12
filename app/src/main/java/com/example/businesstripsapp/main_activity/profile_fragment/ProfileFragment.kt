@@ -24,6 +24,7 @@ import com.example.businesstripsapp.main_activity.profile_fragment.presentation.
 import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.notification_activity.NotificationsRecyclerAdapter
 import com.example.businesstripsapp.notification_details_activity.NotificationDetailsActivity
+import com.example.businesstripsapp.subordinate_details_activity.SubordinateDetailsActivity
 import org.w3c.dom.Text
 import vivid.money.elmslie.android.base.ElmFragment
 import vivid.money.elmslie.core.store.Store
@@ -95,9 +96,9 @@ class ProfileFragment : ElmFragment<Event, Effect, State>() {
     }
 
     private fun toSubordinateDetails(subordinate: User) {
-//        val intent = Intent(this, SubordinateDetailsActivity::class.java)
-//        intent.putExtra("subordinate", subordinate)
-//        startActivity(intent)
+        val intent = Intent(activity, SubordinateDetailsActivity::class.java)
+        intent.putExtra("subordinate", subordinate)
+        startActivity(intent)
     }
 
 }
