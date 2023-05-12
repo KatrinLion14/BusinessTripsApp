@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.main_activity.home_fragment.HomeFragment
+import com.example.businesstripsapp.main_activity.profile_fragment.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_home -> replaceFragment(HomeFragment())
+                R.id.menu_profile -> replaceFragment(ProfileFragment())
             }
             true
         }
