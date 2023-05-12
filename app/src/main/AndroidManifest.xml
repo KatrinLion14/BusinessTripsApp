@@ -15,6 +15,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".create_office_activity.CreateOfficeActivity"
+            android:exported="false"
+            android:parentActivityName=".main_activity.MainActivity"
+            android:theme="@style/MainTheme" />
+        <activity
             android:name=".create_user_activity.CreateUserActivity"
             android:exported="false"
             android:parentActivityName=".main_activity.MainActivity"

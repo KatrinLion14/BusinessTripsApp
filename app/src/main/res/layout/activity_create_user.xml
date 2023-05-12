@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader2"
+                    style="@style/TextHeader3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="E-mail"
@@ -66,7 +66,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/userEmail"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader2"
+                    style="@style/TextHeader3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Пароль"
@@ -96,7 +96,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/userPassword"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader2"
+                    style="@style/TextHeader3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Фамилия"
@@ -126,7 +126,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/firstName"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader2"
+                    style="@style/TextHeader3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Имя"
@@ -156,7 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/secondName"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader2"
+                    style="@style/TextHeader3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Роль"
@@ -186,10 +186,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/role"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader2"
+                    style="@style/TextHeader3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Сотрудники в рассмотрении"
+                    android:text="Сотрудник в рассмотрении"
                     android:textColor="@color/base_50" />
                 <EditText
                     android:id="@+id/subordinatesData"
@@ -198,7 +198,7 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
                     android:background="@color/base_700"
-                    android:hint="id через пробелы"
+                    android:hint="id"
                     android:inputType="text"
                     android:padding="8dp"
                     android:textColor="@color/base_50"
@@ -218,5 +218,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/progressBarContainer"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/load"
+        android:clickable="true"
+        android:visibility="gone">
+        <ProgressBar
+            android:id="@+id/pBar"
+            style="@style/ProgressBarSpinner" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

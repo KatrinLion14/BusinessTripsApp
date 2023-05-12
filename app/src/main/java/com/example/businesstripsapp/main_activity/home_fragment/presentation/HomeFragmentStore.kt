@@ -73,7 +73,7 @@ class MyActor : Actor<Command, Event> {
 
     override fun execute(command: Command): Observable<Event> = when (command) {
         is Command.LoadRequests -> userRepository
-            .getRequests(command.id)
+            .getRequestsFirstPage(command.id)
             .mapEvents(eventMapper = { response ->
                 response.statusCodeHandler(
                     successHandler = {
@@ -85,7 +85,7 @@ class MyActor : Actor<Command, Event> {
                 errorMapper = { Internal.ErrorNetwork })
 
         is Command.LoadTrips -> userRepository
-            .getTrips(command.id)
+            .getTripsFirstPage(command.id)
             .mapEvents(eventMapper = { response ->
                 response.statusCodeHandler(
                     successHandler = {
