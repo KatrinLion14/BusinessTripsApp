@@ -67,7 +67,7 @@
 
                 </LinearLayout>
 
-                
+
                 <LinearLayout
                     android:id="@+id/statusLayout"
                     android:layout_width="match_parent"
