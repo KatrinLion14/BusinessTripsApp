@@ -1,5 +1,6 @@
 package com.example.businesstripsapp.main_activity.main_fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.businesstripsapp.main_activity.main_fragment.presentation.Eve
 import com.example.businesstripsapp.main_activity.main_fragment.presentation.State
 import com.example.businesstripsapp.main_activity.main_fragment.presentation.storeFactory
 import com.example.businesstripsapp.network.NetworkService
+import com.example.businesstripsapp.trips_activity.TripsActivity
 import vivid.money.elmslie.android.base.ElmFragment
 import vivid.money.elmslie.core.store.Store
 
@@ -121,8 +123,8 @@ class HomeFragment : ElmFragment<Event, Effect, State>() {
     }
 
     private fun toTripsActivity() {
-//        val intent: Intent = Intent(this.context, TripsActivity::class.java)
-//        startActivity(intent)
+        val intent: Intent = Intent(this.context, TripsActivity::class.java)
+        startActivity(intent)
     }
 
     private fun toNotificationsActivity() {

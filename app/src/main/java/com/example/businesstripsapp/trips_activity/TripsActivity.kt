@@ -8,7 +8,9 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
+import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.trip_info_activity.TripInfoActivity
 import com.example.businesstripsapp.trips_activity.models.Accommodation
 import com.example.businesstripsapp.trips_activity.models.Destination
@@ -30,40 +32,20 @@ import java.util.Date
 class TripsActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trips), TripsAdapter.Listener {
     override val initEvent: Event = Event.Ui.Init
 
-    var tripsArray : Array<Trip> = arrayOf(
-        Trip("1023325457", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"),
-        Trip("4634636536", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"),
-        Trip("3524523523", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"),
-    )
-
-    private var adapter = TripsAdapter(tripsArray, this)
+    lateinit var adapter : TripsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trips)
-
         setSupportActionBar(findViewById(R.id.tripsToolbar))
 
-        val token = intent.getStringExtra("token")?: ""
-        val userId = "123" //getUserId(token)
+        val token = NetworkService.instance.getToken()
+        val jwt: JWT = JWT(token)
+        val userId: String = jwt.getClaim("id").asString() ?: ""
 
-        initRecyclerView()
-
-        loadAllTrips(userId)
+        store.accept(Event.Ui.ShowTripsList(userId))
     }
 
-    private fun getUserId(token: String) : String {
-
-        val splitString = token.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
-            .toTypedArray()
-        val base64EncodedBody = splitString[1]
-
-        val body = String(Base64.getDecoder().decode(base64EncodedBody))
-
-        val jsonObject = JSONObject(body)
-
-        return jsonObject["id"].toString()
-    }
 
     private fun initRecyclerView() {
         R.layout.activity_trips.apply {
@@ -86,7 +68,7 @@ class TripsActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trips),
             }
             R.id.history -> {
                 store.accept(
-                    Event.Ui.ClickHistory(tripsArray)
+                    Event.Ui.ClickHistory
                 )
             }
         }
@@ -104,14 +86,12 @@ class TripsActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trips),
         is Effect.ShowLoadingError -> Toast.makeText(applicationContext, "Loading error occurs", Toast.LENGTH_SHORT).show()
         is Effect.ToTripInformationActivity ->  toTripInfo(effect.tripId)
         is Effect.BackToMainActivity -> finish()
-        is Effect.ToTripsHistoryActivity -> toTripsHistoryActivity(effect.tripsArray)
-        is Effect.ShowAllTrips -> tripsArray = effect.tripsArray
+        is Effect.ToTripsHistoryActivity -> toTripsHistoryActivity()
+        is Effect.ShowAllTrips -> showAllTrips(effect.tripsArray)
     }
 
-    private fun toTripsHistoryActivity(tripsArray: Array<Trip>) {
-        val intent = Intent(this, TripsHistoryActivity::class.java).apply {
-            putExtra("tripsArray", tripsArray)
-        }
+    private fun toTripsHistoryActivity() {
+        val intent = Intent(this, TripsHistoryActivity::class.java)
         startActivity(intent)
     }
 
@@ -122,10 +102,12 @@ class TripsActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trips),
         startActivity(intent)
     }
 
-    private fun loadAllTrips(userId : String) {
-        store.accept(
-            Event.Ui.ShowTripsList(userId)
-        )
+    private fun showAllTrips(tripsArray : Array<Trip>) {
+        //val tripArray : Array<Trip> = arrayOf(Trip("1023325457", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"))
+
+        adapter = TripsAdapter(tripsArray, this)
+
+        initRecyclerView()
     }
 
     override fun onClick(trip: Trip) {
