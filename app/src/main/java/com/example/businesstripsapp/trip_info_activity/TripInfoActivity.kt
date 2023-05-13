@@ -25,6 +25,7 @@ class TripInfoActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trip
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip_info)
+
         setSupportActionBar(findViewById(R.id.tripInfoToolbar))
 
         val tripId = intent.getStringExtra("tripId")?: ""
