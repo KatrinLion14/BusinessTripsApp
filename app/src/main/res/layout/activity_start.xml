@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/base_800"
     tools:context=".start_activity.StartActivity">
 
     <LinearLayout
@@ -36,11 +35,17 @@
 
     <Button
         android:id="@+id/buttonContinue"
-        style="@style/ButtonPrimary"
-        android:text="Войти"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
+        android:text="continue"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintHorizontal_bias="0.483"
+        style="@style/ButtonPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

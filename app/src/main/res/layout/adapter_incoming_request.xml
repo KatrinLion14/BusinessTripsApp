@@ -28,7 +28,7 @@
             tools:src="@drawable/status_request_pending"/>
 
         <TextView
-            android:id="@+id/employee_name"
+            android:id="@+id/worker_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -39,8 +39,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/incoming_request_status"
-            tools:ignore="RtlSymmetry"
             tools:text="@tools:sample/full_names" />
+
 
 
         <TextView
@@ -53,14 +53,14 @@
             android:gravity="center_vertical"
             android:textAppearance="@style/Text_Secondary_12pt"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/employee_name"
+            app:layout_constraintTop_toBottomOf="@id/worker_name"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="RtlSymmetry"
             tools:text="@tools:sample/lorem" />
 
 
         <TextView
-            android:id="@+id/place"
+            android:id="@+id/incoming_destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -81,29 +81,80 @@
             android:background="@drawable/rectangle_on_card"
             android:textColor="@color/base_800"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/place"
+            app:layout_constraintTop_toBottomOf="@+id/incoming_destination"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             app:tint="@color/base_800"/>
 
-        <TextView
-            android:id="@+id/text_time"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:drawablePadding="6dp"
-            android:textAppearance="@style/Text_Body_16pt"
-            android:textColor="@color/base_500"
-            app:drawableLeftCompat="@drawable/icon_calendar_outline"
-            app:drawableTint="@color/base_500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rectangle"
-            app:tint="@color/base_800"
-            tools:text="@tools:sample/date/ddmmyy" />
+            app:layout_constraintTop_toBottomOf="@+id/rectangle">
+
+            <ImageView
+                android:id="@+id/incoming_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/icon_calendar_outline"
+                app:tint="@color/base_500"/>
+
+            <TextView
+                android:id="@+id/incoming_request_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:drawablePadding="6dp"
+                app:layout_constraintStart_toEndOf="@id/incoming_calendar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAppearance="@style/Text_Body_16pt"
+                android:textColor="@color/base_500"
+                tools:text="@tools:sample/date/ddmmyy" />
+
+            <TextView
+                android:id="@+id/incoming_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:drawablePadding="6dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                android:textColor="@color/base_500"
+                app:drawableTint="@color/base_500"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/incoming_request_start_date"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/base_800"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/incoming_request_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:drawablePadding="6dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                android:textColor="@color/base_500"
+                app:drawableTint="@color/base_500"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/incoming_to"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/base_800"
+                tools:text="@tools:sample/date/ddmmyy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

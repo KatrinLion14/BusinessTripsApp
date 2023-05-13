@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".request_details_activity.RequestDetailsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="58dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/incoming_id_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Номер"
+                android:textColor="@color/base_700"
+                android:textIsSelectable="true"/>
+
+            <TextView
+                android:id="@+id/incoming_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_id_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Номер"
+                android:textColor="@color/base_900"/>
+
+            <TextView
+                android:id="@+id/incoming_status_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_id"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Статус"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_status_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                tools:text="В обработке"
+                android:textColor="@color/base_900"/>
+
+            <TextView
+                android:id="@+id/incoming_description_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_status"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Описание командировки"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_description_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                tools:text="Не заполнено"
+                android:textColor="@color/base_900"/>
+
+            <TextView
+                android:id="@+id/incoming_trip_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_description"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Командировка"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_trip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_trip_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                tools:text="№10264-5614"
+                android:textColor="@color/info_600"/>
+
+            <ImageButton
+                android:id="@+id/button_incoming_trip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_chevron_right"
+                android:backgroundTint="@color/base_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_trip_title"
+                app:layout_constraintBottom_toTopOf="@id/incoming_trip"
+                android:layout_marginEnd="32dp"
+                />
+
+            <TextView
+                android:id="@+id/incoming_start_date_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_trip"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Дата начала"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_start_date_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                tools:text="23.05.2023"
+                android:textColor="@color/base_900"/>
+
+            <ImageButton
+                android:id="@+id/button_incoming_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_calendar_outline"
+                android:backgroundTint="@color/base_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_start_date_title"
+                app:layout_constraintBottom_toTopOf="@id/incoming_start_date"
+                android:layout_marginEnd="32dp"
+                />
+
+            <TextView
+                android:id="@+id/incoming_end_date_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_start_date"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Дата завершения"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_end_date_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                tools:text="30.05.2023"
+                android:textColor="@color/base_900"/>
+
+            <ImageButton
+                android:id="@+id/button_incoming_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_calendar_outline"
+                android:backgroundTint="@color/base_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_end_date_title"
+                app:layout_constraintBottom_toTopOf="@id/incoming_end_date"
+                android:layout_marginEnd="32dp"
+                />
+
+            <TextView
+                android:id="@+id/incoming_destination_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_end_date"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Место командирования"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_destination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_destination_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:scrollHorizontally="false"
+                android:inputType="textMultiLine"
+                tools:text="Москва, 1-й Волоколамский пр-д, д. 10, стр. 1"
+                android:textColor="@color/base_900"/>
+
+            <ImageButton
+                android:id="@+id/button_incoming_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_calendar_outline"
+                android:backgroundTint="@color/base_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_destination_title"
+                app:layout_constraintBottom_toTopOf="@id/incoming_destination"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                />
+
+            <TextView
+                android:id="@+id/incoming_tickets_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_destination"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Билеты"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_tickets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_tickets_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:scrollHorizontally="false"
+                android:inputType="textMultiLine"
+                tools:text="Билет.pdf"
+                android:textColor="@color/info_600"/>
+
+
+            <TextView
+                android:id="@+id/incoming_accomodation_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_tickets"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Гостиница"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_accomodation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_accomodation_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:scrollHorizontally="false"
+                android:inputType="textMultiLine"
+                tools:text="Метрополь, Москва, Театральный проезд, д. 2 "
+                android:textColor="@color/base_900"/>
+
+            <ImageButton
+                android:id="@+id/button_incoming_accomodation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_calendar_outline"
+                android:backgroundTint="@color/base_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_accomodation_title"
+                app:layout_constraintBottom_toTopOf="@id/incoming_accomodation"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                />
+
+            <TextView
+                android:id="@+id/incoming_date_from_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_accomodation"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Дата заселения"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_date_from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_date_from_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                tools:text="23.05.2023"
+                android:textColor="@color/base_900"/>
+
+            <ImageButton
+                android:id="@+id/button_incoming_date_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_calendar_outline"
+                android:backgroundTint="@color/base_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_date_from_title"
+                app:layout_constraintBottom_toTopOf="@id/incoming_date_from"
+                android:layout_marginEnd="32dp"
+                />
+
+            <TextView
+                android:id="@+id/incoming_date_to_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_date_from"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Дата выселения"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_date_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_date_to_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                tools:text="29.05.2023"
+                android:textColor="@color/base_900"/>
+
+            <ImageButton
+                android:id="@+id/button_incoming_date_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_calendar_outline"
+                android:backgroundTint="@color/base_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_date_to_title"
+                app:layout_constraintBottom_toTopOf="@id/incoming_date_to"
+                android:layout_marginEnd="32dp"
+                />
+
+            <TextView
+                android:id="@+id/incoming_comment_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_date_to"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Комментарий сотрудника"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_comment_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                tools:text="Не заполнено"
+                android:textColor="@color/base_900"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/incoming_button_approve"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_comment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="36dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Утвердить заявку"
+                style="@style/ButtonPrimary"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/incoming_button_send_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_button_approve"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                style="@style/ButtonSecondary"
+                android:text="Отправить на доработку"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/incoming_button_decline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_button_send_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                style="@style/ButtonNegativeText"
+                android:text="Отклонить"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

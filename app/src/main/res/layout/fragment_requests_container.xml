@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/info_600"
         app:tabTextColor="@color/base_400"
+        app:tabTextAppearance="@style/Text_Button_14pt"
         app:tabSelectedTextColor="@color/info_600"
         app:tabIndicatorHeight="4dp"
         app:tabMode="fixed"
@@ -18,23 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/outgoing_requests_content_description"
-            android:text = "@string/outgoing_requests"
-            android:textAppearance="@style/Text_Button_14pt"
-            android:textColor="@color/base_400"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/incoming_requests_content_description"
-            android:text = "@string/incoming_requests"
-            android:textAppearance="@style/Text_Button_14pt"
-            android:textColor="@color/base_400"/>
-        
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2

@@ -1,5 +1,6 @@
 package com.example.businesstripsapp.request_create_activity.presentation
 
+//TODO
 data class State(
     val smth: Boolean = false
 )

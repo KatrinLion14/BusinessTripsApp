@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".requests_activity.IncomingRequestsFragment">
+    tools:context=".requests_activity.requests_fragment.incoming_requests_fragment.IncomingRequestsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
