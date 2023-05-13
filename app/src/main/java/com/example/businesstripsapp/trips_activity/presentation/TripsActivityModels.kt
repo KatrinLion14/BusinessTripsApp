@@ -9,7 +9,7 @@ data class State(
 sealed class Effect {
     object ShowLoadingError : Effect()
     object BackToMainActivity : Effect()
-    data class ToTripsHistoryActivity(val tripsArray: Array<Trip>): Effect()
+    object ToTripsHistoryActivity: Effect()
     data class ToTripInformationActivity(val tripId: String): Effect()
     data class ShowAllTrips(val tripsArray: Array<Trip>) : Effect()
 }
@@ -18,7 +18,7 @@ sealed class Event {
     sealed class Ui : Event() {
         object Init : Ui()
         object ClickBack : Ui()
-        data class ClickHistory(val tripsArray: Array<Trip>) : Ui()
+        object ClickHistory : Ui()
         data class ClickTrip(val tripId: String) : Ui()
         data class ShowTripsList(val userId: String) : Ui()
     }

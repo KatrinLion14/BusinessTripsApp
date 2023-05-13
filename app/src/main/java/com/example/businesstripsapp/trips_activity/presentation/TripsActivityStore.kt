@@ -25,7 +25,7 @@ class Reducer :
             effects { +Effect.BackToMainActivity }
         }
         is Event.Ui.ClickHistory -> {
-            effects { +Effect.ToTripsHistoryActivity(event.tripsArray) }
+            effects { +Effect.ToTripsHistoryActivity }
         }
         is Event.Ui.ClickTrip -> {
             effects { +Effect.ToTripInformationActivity(event.tripId) }
@@ -40,7 +40,7 @@ class Reducer :
 class MyActor : Actor<Command, Event> {
 
     private val tripRepository: TripRepository = TripRepository(
-        NetworkService.instance.getAuthService()
+        NetworkService.instance.getService()
     )
 
     override fun execute(command: Command): Observable<Event> = when (command) {

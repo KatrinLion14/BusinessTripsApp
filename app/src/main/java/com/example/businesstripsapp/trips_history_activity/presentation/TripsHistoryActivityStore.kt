@@ -29,7 +29,7 @@ class Reducer :
             effects { +Effect.ToTripInformationActivity(event.tripId) }
         }
         is Event.Ui.ShowTripList -> {
-            commands {  }
+            commands { +Command.LoadAllTrips(event.userId) }
         }
         is Event.Ui.Init -> {}
     }
@@ -39,7 +39,7 @@ class MyActor :
     Actor<Command, Event> {
 
     private val tripHistoryRepository: TripHistoryRepository = TripHistoryRepository(
-        NetworkService.instance.getAuthService()
+        NetworkService.instance.getService()
     )
 
     override fun execute(command: Command): Observable<Event> = when (command) {

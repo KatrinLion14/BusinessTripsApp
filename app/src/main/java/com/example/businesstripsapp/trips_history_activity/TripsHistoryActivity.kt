@@ -7,7 +7,9 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
+import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.trip_info_activity.TripInfoActivity
 import com.example.businesstripsapp.trips_history_activity.models.Accommodation
 import com.example.businesstripsapp.trips_history_activity.models.Destination
@@ -29,17 +31,13 @@ class TripsHistoryActivity: ElmActivity<Event, Effect, State>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trips_history)
-
         setSupportActionBar(findViewById(R.id.tripsHistoryToolbar))
 
-        val tripsArray = arrayOf(Trip("1023325457", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"),
-            Trip("4634636536", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"))
+        val token = NetworkService.instance.getToken()
+        val jwt: JWT = JWT(token)
+        val userId: String = jwt.getClaim("id").asString() ?: ""
 
-        val userId = "132"
-
-        adapter = TripsHistoryAdapter(tripsArray, this)
-
-        loadAllTrips(userId)
+        store.accept(Event.Ui.ShowTripList(userId))
     }
 
     private fun initRecyclerView() {
@@ -70,14 +68,16 @@ class TripsHistoryActivity: ElmActivity<Event, Effect, State>(R.layout.activity_
     override fun handleEffect(effect: Effect) = when (effect) {
         is Effect.ToTripInformationActivity -> toTripInfo(effect.tripId)
         is Effect.BackToTripsActivity -> finish()
-        is Effect.ShowAllTrips -> initRecyclerView()
+        is Effect.ShowAllTrips -> showAllTrips(effect.tripsArray)
         is Effect.ShowLoadingError -> Toast.makeText(applicationContext, "Loading error", Toast.LENGTH_SHORT).show()
     }
 
-    private fun loadAllTrips(userId : String) {
-        store.accept(
-            Event.Ui.ShowTripList(userId)
-        )
+    private fun showAllTrips(tripsArray: Array<Trip>) {
+        //val tripArray = arrayOf(Trip("1023325457", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"))
+
+        adapter = TripsHistoryAdapter(tripsArray, this)
+
+        initRecyclerView()
     }
 
     private fun toTripInfo(tripId: String) {
