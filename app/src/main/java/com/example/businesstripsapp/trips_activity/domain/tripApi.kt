@@ -10,7 +10,6 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 const val TRIP_URL: String = "/users/{uuid}/trips-at/1"
-const val TEST_URL: String = "/accommodations"
 
 interface TripApi {
     @GET(TRIP_URL)
