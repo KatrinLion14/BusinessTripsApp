@@ -46,7 +46,7 @@ class Reducer :
 class MyActor : Actor<Command, Event> {
 
     private val tripInfoRepository: TripInfoRepository = TripInfoRepository(
-        NetworkService.instance.getAuthService()
+        NetworkService.instance.getService()
     )
 
     override fun execute(command: Command): Observable<Event> = when (command) {
