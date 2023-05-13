@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.network.NetworkService
