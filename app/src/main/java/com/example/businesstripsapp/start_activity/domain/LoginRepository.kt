@@ -1,5 +1,6 @@
 package com.example.businesstripsapp.start_activity.domain
 
+import com.example.businesstripsapp.start_activity.domain.models.Login
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.Retrofit

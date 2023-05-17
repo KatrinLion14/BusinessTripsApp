@@ -45,8 +45,18 @@ class StartActivity : ElmActivity<Event, Effect, State>(R.layout.activity_start)
     }
 
     override fun handleEffect(effect: Effect) = when (effect) {
-        Effect.ShowAuthError -> Toast.makeText(applicationContext, "Invalid e-mail or password", Toast.LENGTH_SHORT).show()
+        Effect.ShowAuthError -> Toast.makeText(
+            applicationContext,
+            "Invalid e-mail or password",
+            Toast.LENGTH_SHORT
+        ).show()
+
         is Effect.ToMainActivity -> toUserMainActivity(effect.token)
+        Effect.ShowErrorNetwork -> Toast.makeText(
+            this,
+            "Problems with your connection",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     private fun toUserMainActivity(token: String) {

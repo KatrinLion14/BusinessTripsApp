@@ -18,7 +18,12 @@ class Reducer :
             effects { +Effect.ToMainActivity(event.token) }
         }
         is Internal.ErrorAuth -> {
+            state { copy(auth = false) }
             effects { +Effect.ShowAuthError }
+        }
+        is Internal.ErrorNetwork -> {
+            state { copy(auth = false) }
+            effects { +Effect.ShowErrorNetwork }
         }
     }
 
@@ -48,7 +53,7 @@ class MyActor : Actor<Command, Event> {
                         errorHandler = { Internal.ErrorAuth }
                     )
                 },
-                errorMapper = { Internal.ErrorAuth }
+                errorMapper = { Internal.ErrorNetwork }
             )
     }
 }

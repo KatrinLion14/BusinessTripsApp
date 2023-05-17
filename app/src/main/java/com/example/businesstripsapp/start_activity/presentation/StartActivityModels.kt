@@ -6,6 +6,7 @@ data class State(
 
 sealed class Effect {
     object ShowAuthError : Effect()
+    object ShowErrorNetwork : Effect()
     data class ToMainActivity(val token: String) : Effect()
 }
 
@@ -18,6 +19,7 @@ sealed class Event {
     sealed class Internal : Event() {
         data class SuccessAuth(val token: String) : Internal()
         object ErrorAuth : Internal()
+        object ErrorNetwork : Internal()
     }
 }
 

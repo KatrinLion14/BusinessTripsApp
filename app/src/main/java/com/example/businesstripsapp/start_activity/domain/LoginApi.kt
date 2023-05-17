@@ -1,5 +1,6 @@
 package com.example.businesstripsapp.start_activity.domain
 
+import com.example.businesstripsapp.start_activity.domain.models.Login
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.Body
@@ -11,8 +12,3 @@ interface LoginApi {
     @POST(LOGIN_URL)
     fun loginUser(@Body login: Login): Single<Response<String>>
 }
-
-data class Login(
-    private val email: String,
-    private val password: String
-)
