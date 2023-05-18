@@ -108,47 +108,6 @@
                 tools:text="Не заполнено"
                 android:textColor="@color/base_900"/>
 
-            <TextView
-                android:id="@+id/outgoing_trip_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body2_14pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_description"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:text="Командировка"
-                android:textColor="@color/base_700"/>
-
-            <TextView
-                android:id="@+id/outgoing_trip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body_16pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_trip_title"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                tools:text="№10264-5614"
-                android:textColor="@color/info_600"/>
-
-            <ImageButton
-                android:id="@+id/button_trip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/icon_chevron_right"
-                android:backgroundTint="@color/base_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_trip_title"
-                app:layout_constraintBottom_toTopOf="@id/outgoing_trip"
-                android:layout_marginEnd="32dp"
-                />
 
             <TextView
                 android:id="@+id/outgoing_start_date_title"
@@ -159,7 +118,7 @@
                 android:layout_marginEnd="64dp"
                 android:textAppearance="@style/Text_Body2_14pt"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_trip"
+                app:layout_constraintTop_toBottomOf="@id/outgoing_description"
                 android:breakStrategy="simple"
                 android:singleLine="false"
                 android:text="Дата начала"
@@ -270,7 +229,7 @@
                 android:id="@+id/button_destination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/icon_calendar_outline"
+                android:background="@drawable/icon_map_outline"
                 android:backgroundTint="@color/base_300"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/outgoing_destination_title"
@@ -313,135 +272,6 @@
 
 
             <TextView
-                android:id="@+id/outgoing_accomodation_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body2_14pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_tickets"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:text="Гостиница"
-                android:textColor="@color/base_700"/>
-
-            <TextView
-                android:id="@+id/outgoing_accomodation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body_16pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_accomodation_title"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:scrollHorizontally="false"
-                android:inputType="textMultiLine"
-                tools:text="Метрополь, Москва, Театральный проезд, д. 2 "
-                android:textColor="@color/base_900"/>
-
-            <ImageButton
-                android:id="@+id/button_accomodation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/icon_calendar_outline"
-                android:backgroundTint="@color/base_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_accomodation_title"
-                app:layout_constraintBottom_toTopOf="@id/outgoing_accomodation"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                />
-
-            <TextView
-                android:id="@+id/outgoing_date_from_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body2_14pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_accomodation"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:text="Дата заселения"
-                android:textColor="@color/base_700"/>
-
-            <TextView
-                android:id="@+id/outgoing_date_from"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body_16pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_date_from_title"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                tools:text="23.05.2023"
-                android:textColor="@color/base_900"/>
-
-            <ImageButton
-                android:id="@+id/button_date_from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/icon_calendar_outline"
-                android:backgroundTint="@color/base_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_date_from_title"
-                app:layout_constraintBottom_toTopOf="@id/outgoing_date_from"
-                android:layout_marginEnd="32dp"
-                />
-
-            <TextView
-                android:id="@+id/outgoing_date_to_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body2_14pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_date_from"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:text="Дата выселения"
-                android:textColor="@color/base_700"/>
-
-            <TextView
-                android:id="@+id/outgoing_date_to"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body_16pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_date_to_title"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                tools:text="29.05.2023"
-                android:textColor="@color/base_900"/>
-
-            <ImageButton
-                android:id="@+id/button_date_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/icon_calendar_outline"
-                android:backgroundTint="@color/base_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_date_to_title"
-                app:layout_constraintBottom_toTopOf="@id/outgoing_date_to"
-                android:layout_marginEnd="32dp"
-                />
-
-            <TextView
                 android:id="@+id/outgoing_comment_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -450,7 +280,7 @@
                 android:layout_marginEnd="64dp"
                 android:textAppearance="@style/Text_Body2_14pt"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/outgoing_date_to"
+                app:layout_constraintTop_toBottomOf="@id/outgoing_tickets"
                 android:breakStrategy="simple"
                 android:singleLine="false"
                 android:text="Комментарий сотрудника"

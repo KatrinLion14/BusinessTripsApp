@@ -27,7 +27,7 @@
     </style>
 
 
-    <style name="Text_H1_28pt" parent="TextAppearance.AppCompat">
+    <style name="Text_H1_28pt">
         <item name="android:textSize">
             28sp
         </item>
@@ -99,6 +99,11 @@
         <item name="fontFamily">
             @font/open_sans_regular
         </item>
+    </style>
+
+    <style name="TitleOfListElement" parent="@style/Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textColor">@color/base_700</item>
+        <item name="android:textAppearance">@style/Text_Body2_14pt</item>
     </style>
 
     <style name="GenericProgressBackground" parent="android:Theme">

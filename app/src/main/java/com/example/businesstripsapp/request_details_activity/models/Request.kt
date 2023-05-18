@@ -14,5 +14,5 @@ data class Request (
     val approverId : String, // UUID
     val startDate : Date,
     val endDate : Date,
-    val ticketsUrl : String  // URL
+    val ticketsUrl : String,  // URL
 )

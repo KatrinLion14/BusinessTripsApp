@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".create_accommodation_activity.CreateAccommodationActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/accommodationAddress"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            style="@style/TitleOfListElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Адрес" />
+
+        <EditText
+            android:id="@+id/accommodationAddressData"
+            style="@style/Text_Body2_14pt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/base_700"
+            android:hint="Адрес"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:textColor="@color/base_50"
+            android:textColorHint="@color/base_500" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/accommodationBookingURL"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accommodationAddress">
+
+        <TextView
+            style="@style/TitleOfListElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Booking URL" />
+
+        <EditText
+            android:id="@+id/accommodationBookingURLData"
+            style="@style/Text_Body2_14pt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/base_700"
+            android:hint="Booking Url"
+            android:inputType="text"
+            android:padding="8dp"
+            android:textColor="@color/base_50"
+            android:textColorHint="@color/base_500" />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_create_"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/create"
+        style="@style/ButtonPrimary"
+        />
+
+    <FrameLayout
+        android:id="@+id/progressBarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/load"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/pBar"
+            style="@style/GenericProgressIndicator" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

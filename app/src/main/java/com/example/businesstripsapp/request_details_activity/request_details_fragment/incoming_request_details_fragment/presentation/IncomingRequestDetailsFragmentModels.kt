@@ -9,13 +9,17 @@ data class State(
 )
 
 sealed class Effect {
-    object ShowError : Effect()
+    object ShowErrorLoading : Effect()
+    object ShowErrorApproving : Effect()
+    object ShowErrorSendingBack : Effect()
+    object ShowErrorDeclining : Effect()
+    data class AddTripId(val tripId: String) : Effect()
     data class ToTripDetailsActivity(val tripId: String) : Effect()
     data class OpenTicket(val ticket: String) : Effect()
     data class ShowRequestDetails(val request: Request) : Effect()
-    data class ChangeStatusApproved(val requestId: String): Effect()
-    data class ChangeStatusPending(val requestId: String): Effect()
-    data class ChangeStatusDeclined(val requestId: String): Effect()
+    data class UpdateStatus(val requestId: String): Effect()
+    data class ShowCalendar(val date: String) : Effect()
+    data class ShowMap(val address: String) : Effect()
 }
 
 sealed class Event {
@@ -25,16 +29,28 @@ sealed class Event {
         data class OnTicketClicked(val ticket: String) :Ui()
         data class ShowRequestDetails(val requestId: String) : Ui()
         data class OnApproveClicked(val requestId: String): Ui()
-        data class OnReturnClicked(val requestId: String): Ui()
+        data class OnSendBackClicked(val requestId: String): Ui()
         data class OnDeclineClicked(val requestId: String): Ui()
+        data class OnCalendarClicked(val date: String) : Ui()
+        data class OnMapClicked(val address : String) : Ui()
     }
 
     sealed class Internal : Event() {
-        data class SuccessLoading(val request: Request) : Internal()
-        object ErrorLoading : Internal()
+        data class SuccessDetailsLoading(val request: Request) : Internal()
+        object ErrorDetailsLoading : Internal()
+        data class SuccessApproving(val tripId: String, val requestId: String) : Internal()
+        object ErrorApproving : Internal()
+        data class SuccessSendingBack(val requestId: String) : Internal()
+        object ErrorSendingBack : Internal()
+        data class SuccessDeclining(val requestId: String) : Internal()
+        object ErrorDeclining : Internal()
     }
 }
 
 sealed class Command {
     data class LoadRequestDetails(val requestId: String) : Command()
+    data class ApproveRequest(val requestId: String) : Command()
+    data class DeclineRequest(val requestId: String) : Command()
+    data class SendBackRequest(val requestId: String) : Command()
+
 }

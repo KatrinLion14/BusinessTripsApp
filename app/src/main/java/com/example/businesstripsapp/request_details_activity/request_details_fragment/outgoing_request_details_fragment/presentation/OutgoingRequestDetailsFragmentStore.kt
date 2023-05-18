@@ -2,6 +2,7 @@ package com.example.businesstripsapp.request_details_activity.request_details_fr
 
 import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.network.ext.statusCodeHandler
+import com.example.businesstripsapp.request_details_activity.request_details_fragment.outgoing_request_details_fragment.domain.OutgoingRequestDetailsRepository
 import io.reactivex.Observable
 import vivid.money.elmslie.core.Actor
 import vivid.money.elmslie.core.ElmStoreCompat
@@ -10,46 +11,55 @@ import vivid.money.elmslie.core.store.dsl_reducer.ScreenDslReducer
 class Reducer :
     ScreenDslReducer<Event, Event.Ui, Event.Internal, State, Effect, Command>(Event.Ui::class, Event.Internal::class) {
     override fun Result.internal(event: Event.Internal) = when (event) {
-        is Event.Internal.SuccessLoading -> {
+        is Event.Internal.SuccessDetailsLoading -> {
             state { copy(isLoading = false) }
-            effects { +Effect.ShowAllRequests(event.requestsArray) }
+            effects { +Effect.ShowRequestDetails(event.request) }
         }
-        is Event.Internal.ErrorLoading -> {
+        is Event.Internal.ErrorDetailsLoading -> {
             state { copy(isLoading = false) }
-            effects { +Effect.ShowError }
+            effects { +Effect.ShowErrorLoading }
         }
     }
 
     override fun Result.ui(event: Event.Ui) = when (event) {
-        is Event.Ui.OnRequestClicked -> {
-            effects { +Effect.ToRequestDetailsActivity(event.requestId) }
-        }
-        is Event.Ui.ShowRequests -> {
-            commands { +Command.LoadRequests(event.userId) }
-        }
         is Event.Ui.Init -> {}
+        is Event.Ui.GetRequestDetails -> {
+            state { copy(isLoading = true) }
+            commands { +Command.LoadRequestDetails(event.requestId) }
+        }
+        is Event.Ui.OnTicketClicked -> {
+            effects { +Effect.OpenTicket(event.ticket) }
+        }
+        is Event.Ui.OnCalendarClicked -> {
+            effects { +Effect.ShowCalendar(event.date) }
+        }
+        is Event.Ui.OnMapClicked -> {
+            effects { +Effect.ShowMap(event.address) }
+        }
     }
 
 }
 
 class MyActor : Actor<Command, Event> {
 
-    private val requestRepository : IncomingRequestRepository = IncomingRequestRepository(
-        NetworkService.instance.getAuthService())
+    private val requestRepository : OutgoingRequestDetailsRepository = OutgoingRequestDetailsRepository(
+        NetworkService.instance.getAuthService()
+    )
 
     override fun execute(command: Command): Observable<Event> = when (command) {
-        is Command.LoadRequests -> requestRepository.getAllRequests(command.userId)
+        is Command.LoadRequestDetails -> requestRepository.getRequest(command.requestId)
             .mapEvents(
                 eventMapper = { response ->
                     response.statusCodeHandler(
                         successHandler = {
-                            Event.Internal.SuccessLoading(it)
+                            Event.Internal.SuccessDetailsLoading(it)
                         },
-                        errorHandler = { Event.Internal.ErrorLoading }
+                        errorHandler = { Event.Internal.ErrorDetailsLoading }
                     )
                 },
-                errorMapper = { Event.Internal.ErrorLoading }
+                errorMapper = { Event.Internal.ErrorDetailsLoading }
             )
+
     }
 }
 

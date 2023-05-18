@@ -29,12 +29,23 @@ class RequestDetailsActivity : ElmActivity<Event, Effect, State>(R.layout.activi
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_request_details)
 
+        val mFragmentManager = supportFragmentManager
+        val mFragmentTransaction = mFragmentManager.beginTransaction()
+        val mFragmentOutgoing = outgoingRequestDetailsFragment
+        val mFragmentIncoming = incomingRequestDetailsFragment
+
         val requestId : String = intent.getStringExtra("requestId")!!
         val requestType : String? = intent.getStringExtra("requestType")
+
+        val mBundle = Bundle()
+        mBundle.putString("requestId", requestId)
+
         if (requestType == "incoming") {
-            supportFragmentManager.beginTransaction().replace(R.id.request_details_container, incomingRequestDetailsFragment).commit()
+            mFragmentIncoming.arguments = mBundle
+            mFragmentTransaction.replace(R.id.request_details_container, mFragmentIncoming).commit()
         } else {
-            supportFragmentManager.beginTransaction().replace(R.id.request_details_container, outgoingRequestDetailsFragment).commit()
+            mFragmentOutgoing.arguments = mBundle
+            mFragmentTransaction.replace(R.id.request_details_container, mFragmentOutgoing).commit()
         }
 
         val buttonBack: ImageButton = findViewById(R.id.button_back)
@@ -60,14 +71,8 @@ class RequestDetailsActivity : ElmActivity<Event, Effect, State>(R.layout.activi
     }
 
     override fun handleEffect(effect: Effect) = when (effect) {  //обрабатывает side Effect
-        is Effect.ToRequestsActivity -> toRequestsActivity()
+        is Effect.ToPreviousActivity -> finish()
         is Effect.ToRequestsEditActivity -> toRequestsEditActivity(effect.requestId)
-    }
-
-    private fun toRequestsActivity() {
-        val intent: Intent = Intent(this, RequestsActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 
     private fun toRequestsEditActivity(requestId : String) {
@@ -75,6 +80,5 @@ class RequestDetailsActivity : ElmActivity<Event, Effect, State>(R.layout.activi
         intent.putExtra("requestId", requestId)
         startActivity(intent)
     }
-
 
 }

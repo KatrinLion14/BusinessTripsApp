@@ -18,14 +18,14 @@ interface IncomingRequestDetailsApi {
     fun getRequest(@Path("uuid") id: String): Single<Response<Request>>
 
     @PUT(APPROVE_REQUEST)
-    fun approveRequest(@Path("uuid") id: String)
+    fun approveRequest(@Path("uuid") id: String): Single<Response<String>>
 
     @PUT(DECLINE_REQUEST)
-    fun declineRequest(@Path("uuid") id: String)
+    fun declineRequest(@Path("uuid") id: String): Single<Response<String>>
 
     @PUT(SEND_FOR_EDITING_REQUEST)
-    fun SendRequestForEditing(@Path("uuid") id: String)
+    fun sendRequestForEditing(@Path("uuid") id: String): Single<Response<String>>
 
     @PUT(UPDATE_REQUEST)
-    fun UpdateRequest(@Path("uuid") id: String)
+    fun updateRequest(@Path("uuid") id: String): Single<Response<String>>
 }

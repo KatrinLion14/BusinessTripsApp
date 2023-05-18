@@ -53,6 +53,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".create_request_activity.CreateRequestActivity"
+            android:exported="true"
+            android:parentActivityName=".requests_activity.RequestsActivity">
+        </activity>
 
         <activity
             android:name=".requests_activity.RequestsActivity"

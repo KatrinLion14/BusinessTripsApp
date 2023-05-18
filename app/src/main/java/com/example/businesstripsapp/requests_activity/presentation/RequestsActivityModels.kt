@@ -5,7 +5,7 @@ data class State(
 )
 
 sealed class Effect {
-    object ToMainActivity : Effect()
+    object ToPreviousActivity : Effect()
     object ToRequestsHistoryActivity : Effect()
     object ToRequestCreateActivity : Effect()
 }

@@ -6,7 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-const val REQUEST_URL: String = "/users/{uuid}/outgoing-requests-at/"
+const val REQUEST_URL: String = "/users/{uuid}/incoming-requests-at/"
 
 interface IncomingRequestApi {
     @GET(REQUEST_URL)

@@ -14,8 +14,7 @@ import com.example.businesstripsapp.requests_activity.presentation.Event
 import com.example.businesstripsapp.requests_activity.presentation.State
 import com.example.businesstripsapp.requests_activity.presentation.storeFactory
 import com.example.businesstripsapp.requests_history_activity.RequestsHistoryActivity
-import com.example.businesstripsapp.main_activity.MainActivity
-import com.example.businesstripsapp.request_create_activity.RequestCreateActivity
+import com.example.businesstripsapp.create_request_activity.CreateRequestActivity
 import com.example.businesstripsapp.requests_activity.requests_fragment.RequestsFragment
 import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmActivity
@@ -68,16 +67,16 @@ class RequestsActivity : ElmActivity<Event, Effect, State>(R.layout.activity_req
     }
 
     override fun handleEffect(effect: Effect) = when (effect) {  //обрабатывает side Effect
-        is Effect.ToMainActivity -> toMainActivity()
+        is Effect.ToPreviousActivity -> finish()
         is Effect.ToRequestsHistoryActivity -> toRequestsHistoryActivity()
         is Effect.ToRequestCreateActivity -> toRequestCreateActivity()
     }
 
-    private fun toMainActivity() {
-        val intent: Intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
+    //private fun toMainActivity() {
+    //    val intent: Intent = Intent(this, MainActivity::class.java)
+    //    startActivity(intent)
+    //    finish()
+    //}
 
     private fun toRequestsHistoryActivity() {
         val intent: Intent = Intent(this, RequestsHistoryActivity::class.java)
@@ -85,7 +84,7 @@ class RequestsActivity : ElmActivity<Event, Effect, State>(R.layout.activity_req
     }
 
     private fun toRequestCreateActivity() {
-        val intent: Intent = Intent(this, RequestCreateActivity::class.java)
+        val intent: Intent = Intent(this, CreateRequestActivity::class.java)
         startActivity(intent)
     }
 

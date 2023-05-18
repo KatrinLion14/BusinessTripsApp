@@ -14,7 +14,7 @@ class Reducer :
 
     override fun Result.ui(event: Event.Ui) = when (event) {
         is Event.Ui.OnBackClicked -> {
-            effects { +Effect.ToRequestsActivity }
+            effects { +Effect.ToPreviousActivity }
         }
         is Event.Ui.OnEditClicked -> {
             effects { +Effect.ToRequestsEditActivity(event.requestId) }

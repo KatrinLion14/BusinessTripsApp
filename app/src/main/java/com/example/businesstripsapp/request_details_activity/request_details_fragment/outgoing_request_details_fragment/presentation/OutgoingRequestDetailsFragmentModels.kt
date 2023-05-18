@@ -1,28 +1,34 @@
 package com.example.businesstripsapp.request_details_activity.request_details_fragment.outgoing_request_details_fragment.presentation
 
+import com.example.businesstripsapp.request_details_activity.models.Request
+
 data class State(
-    val isLoading: Boolean = false,
+    val isLoading: Boolean = false
 )
 
 sealed class Effect {
-    object ShowError : Effect()
-    data class ToRequestDetailsActivity(val requestId: String) : Effect()
-    data class ShowAllRequests(val requestsArray: Array<Request>) : Effect()
+    object ShowErrorLoading : Effect()
+    data class ShowRequestDetails(val request: Request) : Effect()
+    data class OpenTicket(val ticket: String) : Effect()
+    data class ShowCalendar(val date: String) : Effect()
+    data class ShowMap(val address: String) : Effect()
 }
 
 sealed class Event {
     sealed class Ui : Event() {
         object Init : Ui()
-        data class OnRequestClicked(val requestId: String) : Ui()
-        data class ShowRequests(val userId: String) : Ui()
+        data class OnTicketClicked(val ticket: String) :Ui()
+        data class GetRequestDetails(val requestId: String) : Ui()
+        data class OnCalendarClicked(val date: String) : Ui()
+        data class OnMapClicked(val address : String) : Ui()
     }
 
     sealed class Internal : Event() {
-        data class SuccessLoading(val requestsArray: Array<Request>) : Internal()
-        object ErrorLoading : Internal()
+        data class SuccessDetailsLoading(val request: Request) : Internal()
+        object ErrorDetailsLoading : Internal()
     }
 }
 
 sealed class Command {
-    data class LoadRequests(val userId: String) : Command()
+    data class LoadRequestDetails(val requestId: String) : Command()
 }

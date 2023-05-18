@@ -5,7 +5,7 @@ data class State(
 )
 
 sealed class Effect {
-    object ToRequestsActivity : Effect()
+    object ToPreviousActivity : Effect()
     data class ToRequestsEditActivity(val requestId: String) : Effect()
 }
 
