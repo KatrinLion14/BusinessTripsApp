@@ -9,10 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.businesstripsapp.R
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.models.Destination
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.models.Office
 import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.models.Request
 import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.recycler_view_adapters.IncomingRequestsAdapter
 import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.presentation.Effect
@@ -25,32 +24,7 @@ import java.util.Base64
 
 class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.fragment_incoming_requests), IncomingRequestsAdapter.Listener {
 
-    var officeArray: Array<Office> = arrayOf(
-        Office("1234", "Пермь", "smth"),
-        Office("1235", "Санкт-Петербург", "smth"),
-        Office("1236", "Нижний Новгород", "smth"),
-        Office("1237", "Владивосток", "smth"),
-        Office("1238", "Самара", "smth")
-    )
-
-    var destinationArray: Array<Destination> = arrayOf(
-        Destination("1234", "smth", officeArray[0], "4"),
-        Destination("1235", "smth", officeArray[1], "5"),
-        Destination("1236", "smth", officeArray[2], "6"),
-        Destination("1237", "smth", officeArray[3], "7"),
-        Destination("1238", "smth", officeArray[4], "8")
-    )
-
-    var requestsArray : Array<Request> = arrayOf(
-        Request("4634636536", "Возвращена", "Петр Степанович", "Петров", destinationArray[0], "13.04.2023", "24.04.2023"),
-        Request("3524523523", "Утверждена","Иван Иванович", "Иванов", destinationArray[1], "21.05.2023", "29.05.2023"),
-        Request("3465363563","В обработке", "Степан Игоревич", "Степаненко", destinationArray[2], "07.07.2023", "20.07.2023"),
-        Request("2534534534","Отклонена", "Игнат Васильевич", "Захаров", destinationArray[3], "16.07.2023", "24.07.2023"),
-        Request("1123142345","Отклонена", "Никита Андреевич", "Кошкин", destinationArray[4], "17.08.2023", "26.08.2023")
-    )
-
-    private var requestsAdapter = IncomingRequestsAdapter(requestsArray, this)
-
+    lateinit var requestsAdapter: IncomingRequestsAdapter
     override val initEvent: Event = Event.Ui.Init //событие инициализации экрана
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -60,7 +34,6 @@ class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
     ): View {
         // Inflate the layout for this fragment
         val rootView: View = inflater.inflate(R.layout.fragment_incoming_requests, container, false)
-        requestsAdapter = IncomingRequestsAdapter(requestsArray, this)
 
         val token = activity?.intent?.getStringExtra("token") ?: ""
         val userId = getUserId(token)
@@ -69,11 +42,16 @@ class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
             Event.Ui.ShowRequests(userId)
         )
 
-        R.layout.fragment_incoming_requests.apply {
-            view?.findViewById<RecyclerView>(R.id.incoming_requests_recycler_view)?.adapter = requestsAdapter
-        }
-
         return rootView
+    }
+
+
+    private fun initRecyclerView() {
+        R.layout.fragment_incoming_requests.apply {
+            val recyclerView : RecyclerView? = view?.findViewById(R.id.incoming_requests_recycler_view)
+            recyclerView?.layoutManager = LinearLayoutManager(activity)
+            recyclerView?.adapter = requestsAdapter
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -94,7 +72,7 @@ class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
     override fun handleEffect(effect: Effect) = when (effect) {  //обрабатывает side Effect
         is Effect.ShowError -> Toast.makeText(activity, "Can not show the requests", Toast.LENGTH_SHORT).show()
         is Effect.ToRequestDetailsActivity -> toRequestDetailsActivity(effect.requestId)
-        is Effect.ShowAllRequests -> requestsArray = effect.requestsArray
+        is Effect.ShowAllRequests -> ShowRequests(effect.requestsArray)
     }
 
     override fun onClick(request: Request) {
@@ -110,5 +88,8 @@ class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
         startActivity(intent)
     }
 
-
+    private fun ShowRequests(requestsArray: Array<Request>) {
+        requestsAdapter = IncomingRequestsAdapter(requestsArray, this)
+        initRecyclerView()
+    }
 }

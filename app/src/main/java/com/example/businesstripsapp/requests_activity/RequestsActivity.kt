@@ -34,8 +34,19 @@ class RequestsActivity : ElmActivity<Event, Effect, State>(R.layout.activity_req
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_requests)
 
+        //private val token = NetworkService.instance.getToken()
+        //private val jwt: JWT = JWT(token)
+        //private val role: String = jwt.getClaim("role").asString() ?: ""
+        //val id: String = jwt.getClaim("id").asString() ?: ""
+
         val token = intent?.getStringExtra("token") ?: ""
         val userId = getUserId(token)
+
+        //if (role == "ADMIN") {
+        //    supportFragmentManager.beginTransaction().replace(R.id.container, requestsFragment).commit()
+        //} else {
+        //    supportFragmentManager.beginTransaction().replace(R.id.container, outgoingRequestsFragment).commit()
+        //}
 
         supportFragmentManager.beginTransaction().replace(R.id.container, requestsFragment).commit()
 

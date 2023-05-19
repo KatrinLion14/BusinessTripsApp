@@ -19,6 +19,7 @@ import com.example.businesstripsapp.create_request_activity.presentation.Effect
 import com.example.businesstripsapp.create_request_activity.presentation.Event
 import com.example.businesstripsapp.create_request_activity.presentation.State
 import com.example.businesstripsapp.create_request_activity.presentation.storeFactory
+import com.example.businesstripsapp.network.NetworkService
 import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmActivity
 import vivid.money.elmslie.core.store.Store
@@ -27,7 +28,6 @@ import java.util.Base64
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
 class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activity_request_create) {
     override val initEvent: Event = Event.Ui.Init
@@ -115,7 +115,9 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
 
         is Effect.DestinationCreated -> {
             val destinationId = effect.createDestination.id
-
+            //val token = NetworkService.instance.getToken()
+            //val jwt: JWT = JWT(token)
+            //val userId: String = jwt.getClaim("id").asString() ?: ""
             val token = intent?.getStringExtra("token") ?: ""
             val userId = getUserId(token)
 
@@ -163,9 +165,18 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
 
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-                var date : String = dayOfMonth.toString() + "." + (month+1).toString() + "." + year.toString()
+                val monthString : String = if (monthOfYear+1 < 10) {
+                    "0${monthOfYear+1}"
+                } else {
+                    (monthOfYear+1).toString()
+                }
+                val dayString : String = if (dayOfMonth < 10) {
+                    "0$dayOfMonth"
+                } else {
+                    dayOfMonth.toString()
+                }
+                val date : String = "$dayString.$monthString.$year"
                 startDate.setText(date)
-
             }, year, month, day)
 
             dpd.show()
@@ -178,7 +189,17 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
 
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-                var date : String = dayOfMonth.toString() + "." + (month+1).toString() + "." + year.toString()
+                val monthString : String = if (monthOfYear+1 < 10) {
+                    "0${monthOfYear+1}"
+                } else {
+                    (monthOfYear+1).toString()
+                }
+                val dayString : String = if (dayOfMonth < 10) {
+                    "0$dayOfMonth"
+                } else {
+                    dayOfMonth.toString()
+                }
+                val date : String = "$dayString.$monthString.$year"
                 endDate.setText(date)
 
             }, year, month, day)
@@ -196,23 +217,10 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
         }
     }
 
-    private fun DateToString(date: Date) : String {
-        val OLD_FORMAT = "yyyy-MM-dd"
-        val NEW_FORMAT = "dd.MM.yyyy"
-        val format = SimpleDateFormat(OLD_FORMAT, Locale.getDefault())
-        val oldDateString : String = format.format(date)
-        val newDateString: String
-        val d: Date = format.parse(oldDateString) as Date
-        format.applyPattern(NEW_FORMAT)
-        newDateString = format.format(d)
-        return newDateString
-    }
-
-    private fun StringToDate(string: String) : Date {
+    private fun StringToDate(string: String): Date {
         val FORMAT = "dd.MM.yyyy"
         val format = SimpleDateFormat(FORMAT, Locale.getDefault())
-        val date: Date = format.parse(string) as Date
-        return date
+        return format.parse(string) as Date
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
