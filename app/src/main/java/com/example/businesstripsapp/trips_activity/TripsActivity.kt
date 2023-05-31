@@ -103,11 +103,25 @@ class TripsActivity: ElmActivity<Event, Effect, State>(R.layout.activity_trips),
     }
 
     private fun showAllTrips(tripsArray : Array<Trip>) {
-        //val tripArray : Array<Trip> = arrayOf(Trip("1023325457", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"))
+//        val tripArray : Array<Trip> = arrayOf(Trip("1023325457", "Предстоит", Accommodation("123", "Москва", "123"), Destination("123", "123", Office("123", "г. Пермь", "123"), "123"), "123", "15.05.2023", "25.05.2023"),
+//            Trip("762114579336", "Предстоит", Accommodation("123", "Москва", "123"), Destination("123", "123", Office("123", "г. Москва", "123"), "123"), "123", "14.07.2023", "02.08.2023"))
 
-        adapter = TripsAdapter(tripsArray, this)
+        val activeTripsArray : Array<Trip> = arrayOf()
+        sortTrips(tripsArray, activeTripsArray)
+
+        adapter = TripsAdapter(activeTripsArray, this)
 
         initRecyclerView()
+    }
+
+    private fun sortTrips(tripsArray: Array<Trip>, activeTripsArray: Array<Trip>) {
+        var index = 0;
+        for (trip in tripsArray) {
+            if (trip.tripStatus == "pending") {
+                activeTripsArray[index] = trip
+                index++
+            }
+        }
     }
 
     override fun onClick(trip: Trip) {

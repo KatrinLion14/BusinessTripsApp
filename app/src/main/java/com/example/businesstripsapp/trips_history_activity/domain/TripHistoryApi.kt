@@ -6,7 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-const val TRIP_HISTORY_URL: String = "/users/{uuid}/trips-at/1"
+const val TRIP_HISTORY_URL: String = "/users/{uuid}/trips-at/"
 
 interface TripHistoryApi {
     @GET(TRIP_HISTORY_URL)

@@ -73,11 +73,24 @@ class TripsHistoryActivity: ElmActivity<Event, Effect, State>(R.layout.activity_
     }
 
     private fun showAllTrips(tripsArray: Array<Trip>) {
-        //val tripArray = arrayOf(Trip("1023325457", "Предстоит", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "123", "123"), "123"), "123", "123", "123"))
+        //val tripArray = arrayOf(Trip("3672390157", "Завершена", Accommodation("123", "123", "123"), Destination("123", "123", Office("123", "г. Воронеж", "123"), "123"), "123", "10.03.2023", "15.03.2023"))
+
+        val activeTripsArray : Array<Trip> = arrayOf()
+        sortTrips(tripsArray, activeTripsArray)
 
         adapter = TripsHistoryAdapter(tripsArray, this)
 
         initRecyclerView()
+    }
+
+    private fun sortTrips(tripsArray: Array<Trip>, activeTripsArray: Array<Trip>) {
+        var index = 0;
+        for (trip in tripsArray) {
+            if (trip.tripStatus == "pending") {
+                activeTripsArray[index] = trip
+                index++
+            }
+        }
     }
 
     private fun toTripInfo(tripId: String) {
