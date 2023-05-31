@@ -1,6 +1,6 @@
 package com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.domain
 
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.models.Request
+import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.domain.models.Request
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.Retrofit

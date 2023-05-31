@@ -49,7 +49,7 @@
                 android:textColor="@color/base_900"/>
 
             <TextView
-                android:id="@+id/incoming_status_title"
+                android:id="@+id/incoming_name_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -58,6 +58,38 @@
                 android:textAppearance="@style/Text_Body2_14pt"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/incoming_id"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="ФИО сотрудника"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_name_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:scrollHorizontally="false"
+                android:inputType="textMultiLine"
+                tools:text="Петров Петр Петрович"
+                android:textColor="@color/base_900"/>
+
+            <TextView
+                android:id="@+id/incoming_status_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_name"
                 android:breakStrategy="simple"
                 android:singleLine="false"
                 android:text="Статус"
@@ -108,47 +140,6 @@
                 tools:text="Не заполнено"
                 android:textColor="@color/base_900"/>
 
-            <TextView
-                android:id="@+id/incoming_trip_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body2_14pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_description"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:text="Командировка"
-                android:textColor="@color/base_700"/>
-
-            <TextView
-                android:id="@+id/incoming_trip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body_16pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_trip_title"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                tools:text="№10264-5614"
-                android:textColor="@color/info_600"/>
-
-            <ImageButton
-                android:id="@+id/button_incoming_trip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/icon_chevron_right"
-                android:backgroundTint="@color/base_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_trip_title"
-                app:layout_constraintBottom_toTopOf="@id/incoming_trip"
-                android:layout_marginEnd="32dp"
-                />
 
             <TextView
                 android:id="@+id/incoming_start_date_title"
@@ -159,7 +150,7 @@
                 android:layout_marginEnd="64dp"
                 android:textAppearance="@style/Text_Body2_14pt"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_trip"
+                app:layout_constraintTop_toBottomOf="@id/incoming_description"
                 android:breakStrategy="simple"
                 android:singleLine="false"
                 android:text="Дата начала"
@@ -246,7 +237,7 @@
                 app:layout_constraintTop_toBottomOf="@id/incoming_end_date"
                 android:breakStrategy="simple"
                 android:singleLine="false"
-                android:text="Место командирования"
+                android:text="Место командирования (адрес офиса)"
                 android:textColor="@color/base_700"/>
 
             <TextView
@@ -280,7 +271,7 @@
                 />
 
             <TextView
-                android:id="@+id/incoming_tickets_title"
+                android:id="@+id/incoming_seat_place_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -289,6 +280,38 @@
                 android:textAppearance="@style/Text_Body2_14pt"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/incoming_destination"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Место в офисе"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/incoming_seat_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_seat_place_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:scrollHorizontally="false"
+                android:inputType="textMultiLine"
+                tools:text="1"
+                android:textColor="@color/base_900"/>
+
+            <TextView
+                android:id="@+id/incoming_tickets_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/incoming_seat_place"
                 android:breakStrategy="simple"
                 android:singleLine="false"
                 android:text="Билеты"
@@ -313,7 +336,7 @@
 
 
             <TextView
-                android:id="@+id/incoming_accomodation_title"
+                android:id="@+id/incoming_comment_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -324,136 +347,7 @@
                 app:layout_constraintTop_toBottomOf="@id/incoming_tickets"
                 android:breakStrategy="simple"
                 android:singleLine="false"
-                android:text="Гостиница"
-                android:textColor="@color/base_700"/>
-
-            <TextView
-                android:id="@+id/incoming_accomodation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body_16pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_accomodation_title"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:scrollHorizontally="false"
-                android:inputType="textMultiLine"
-                tools:text="Метрополь, Москва, Театральный проезд, д. 2 "
-                android:textColor="@color/base_900"/>
-
-            <ImageButton
-                android:id="@+id/button_incoming_accomodation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/icon_calendar_outline"
-                android:backgroundTint="@color/base_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_accomodation_title"
-                app:layout_constraintBottom_toTopOf="@id/incoming_accomodation"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                />
-
-            <TextView
-                android:id="@+id/incoming_date_from_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body2_14pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_accomodation"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:text="Дата заселения"
-                android:textColor="@color/base_700"/>
-
-            <TextView
-                android:id="@+id/incoming_date_from"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body_16pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_date_from_title"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                tools:text="23.05.2023"
-                android:textColor="@color/base_900"/>
-
-            <ImageButton
-                android:id="@+id/button_incoming_date_from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/icon_calendar_outline"
-                android:backgroundTint="@color/base_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_date_from_title"
-                app:layout_constraintBottom_toTopOf="@id/incoming_date_from"
-                android:layout_marginEnd="32dp"
-                />
-
-            <TextView
-                android:id="@+id/incoming_date_to_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body2_14pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_date_from"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:text="Дата выселения"
-                android:textColor="@color/base_700"/>
-
-            <TextView
-                android:id="@+id/incoming_date_to"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body_16pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_date_to_title"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                tools:text="29.05.2023"
-                android:textColor="@color/base_900"/>
-
-            <ImageButton
-                android:id="@+id/button_incoming_date_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/icon_calendar_outline"
-                android:backgroundTint="@color/base_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_date_to_title"
-                app:layout_constraintBottom_toTopOf="@id/incoming_date_to"
-                android:layout_marginEnd="32dp"
-                />
-
-            <TextView
-                android:id="@+id/incoming_comment_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="64dp"
-                android:textAppearance="@style/Text_Body2_14pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/incoming_date_to"
-                android:breakStrategy="simple"
-                android:singleLine="false"
-                android:text="Комментарий сотрудника"
+                android:text="Комментарий"
                 android:textColor="@color/base_700"/>
 
             <TextView
@@ -514,5 +408,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        style="@style/GenericProgressBackground"
+        android:id="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <ProgressBar
+            style="@style/GenericProgressIndicator"/>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

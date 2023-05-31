@@ -14,6 +14,18 @@
         android:theme="@style/Theme.BusinessTripsApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <activity
+            android:name=".splash_activity.SplashScreen"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@style/Theme.BusinessTripsApp.Launcher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".subordinate_details_activity.SubordinateDetailsActivity"
             android:exported="false"
@@ -48,20 +60,29 @@
             android:name=".start_activity.StartActivity"
             android:exported="true"
             android:theme="@style/MainTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
+            android:name=".requests_activity.RequestsActivity"
+            android:exported="false"
+            android:parentActivityName=".main_activity.MainActivity">
+        </activity>
+
+        <activity
             android:name=".create_request_activity.CreateRequestActivity"
-            android:exported="true"
+            android:exported="false"
             android:parentActivityName=".requests_activity.RequestsActivity">
         </activity>
 
         <activity
-            android:name=".requests_activity.RequestsActivity"
-            android:exported="true">
+            android:name=".request_details_activity.RequestDetailsActivity"
+            android:exported="false"
+            android:parentActivityName=".requests_activity.RequestsActivity">
+        </activity>
+
+        <activity
+            android:name=".requests_history_activity.RequestsHistoryActivity"
+            android:exported="false"
+            android:parentActivityName=".requests_activity.RequestsActivity">
         </activity>
 
         <activity

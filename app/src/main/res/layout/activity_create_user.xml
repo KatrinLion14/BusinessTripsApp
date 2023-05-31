@@ -36,14 +36,14 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader3"
+                    style="@style/Text_Body2_14pt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="E-mail"
                     android:textColor="@color/base_50" />
                 <EditText
                     android:id="@+id/userEmailData"
-                    style="@style/Body1"
+                    style="@style/Text_Body_16pt"
                     android:layout_width="fill_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -66,14 +66,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/userEmail"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader3"
+                    style="@style/Text_Body2_14pt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Пароль"
                     android:textColor="@color/base_50" />
                 <EditText
                     android:id="@+id/userPasswordData"
-                    style="@style/Body1"
+                    style="@style/Text_Body_16pt"
                     android:layout_width="fill_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -96,14 +96,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/userPassword"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader3"
+                    style="@style/Text_Body2_14pt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Фамилия"
                     android:textColor="@color/base_50" />
                 <EditText
                     android:id="@+id/firstNameData"
-                    style="@style/Body1"
+                    style="@style/Text_Body_16pt"
                     android:layout_width="fill_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -126,14 +126,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/firstName"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader3"
+                    style="@style/Text_Body2_14pt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Имя"
                     android:textColor="@color/base_50" />
                 <EditText
                     android:id="@+id/secondNameData"
-                    style="@style/Body1"
+                    style="@style/Text_Body_16pt"
                     android:layout_width="fill_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -156,14 +156,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/secondName"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader3"
+                    style="@style/Text_Body2_14pt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Роль"
                     android:textColor="@color/base_50" />
                 <EditText
                     android:id="@+id/roleData"
-                    style="@style/Body1"
+                    style="@style/Text_Body_16pt"
                     android:layout_width="fill_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -186,14 +186,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/role"
                 app:layout_constraintStart_toStartOf="parent">
                 <TextView
-                    style="@style/TextHeader3"
+                    style="@style/Text_Body2_14pt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Сотрудник в рассмотрении"
                     android:textColor="@color/base_50" />
                 <EditText
                     android:id="@+id/subordinatesData"
-                    style="@style/Body1"
+                    style="@style/Text_Body_16pt"
                     android:layout_width="fill_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -213,7 +213,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="30dp"
-        android:text="создать"
+        android:text="Создать"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
@@ -228,7 +228,7 @@
         android:visibility="gone">
         <ProgressBar
             android:id="@+id/pBar"
-            style="@style/ProgressBarSpinner" />
+            style="@style/GenericProgressIndicator" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

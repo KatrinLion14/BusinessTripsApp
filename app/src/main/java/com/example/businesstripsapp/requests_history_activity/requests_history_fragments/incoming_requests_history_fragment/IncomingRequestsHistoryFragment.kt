@@ -1,4 +1,4 @@
-package com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment
+package com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment
 
 import android.content.Intent
 import android.os.Build
@@ -14,19 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.network.NetworkService
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.domain.models.Request
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.recycler_view_adapters.IncomingRequestsAdapter
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.presentation.Effect
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.presentation.Event
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.presentation.State
-import com.example.businesstripsapp.requests_history_activity.RequestsHistoryActivity
 import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmFragment
 import java.util.Base64
 
 class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.fragment_incoming_requests), IncomingRequestsAdapter.Listener {
 
-    lateinit var requestsAdapter: IncomingRequestsAdapter
+    lateinit var requestsAdapter: IncomingRequestsHistoryAdapter
     override val initEvent: Event = Event.Ui.Init
 
     private val token = NetworkService.instance.getToken()

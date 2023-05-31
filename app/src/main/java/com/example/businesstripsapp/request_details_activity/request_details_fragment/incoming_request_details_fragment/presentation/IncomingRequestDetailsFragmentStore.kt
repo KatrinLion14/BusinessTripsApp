@@ -21,8 +21,9 @@ class Reducer :
         }
         is Event.Internal.SuccessApproving -> {
             state { copy(isLoading = false) }
-            effects { +Effect.AddTripId(event.tripId) }
-            effects { +Effect.UpdateStatus(event.requestId) }
+            effects { +Effect.ShowSuccessStatusUpdating }
+            //effects { +Effect.CloseDialog }
+            commands { +Command.LoadRequestDetails(event.requestId) }
         }
         is Event.Internal.ErrorApproving -> {
             state { copy(isLoading = false) }
@@ -30,7 +31,8 @@ class Reducer :
         }
         is Event.Internal.SuccessDeclining -> {
             state { copy(isLoading = false) }
-            effects { +Effect.UpdateStatus(event.requestId) }
+            effects { +Effect.ShowSuccessStatusUpdating }
+            commands { +Command.LoadRequestDetails(event.requestId) }
         }
         is Event.Internal.ErrorDeclining -> {
             state { copy(isLoading = false) }
@@ -38,40 +40,50 @@ class Reducer :
         }
         is Event.Internal.SuccessSendingBack -> {
             state { copy(isLoading = false) }
-            effects { +Effect.UpdateStatus(event.requestId) }
+            effects { +Effect.ShowSuccessStatusUpdating }
+            commands { +Command.LoadRequestDetails(event.requestId) }
         }
         is Event.Internal.ErrorSendingBack -> {
             state { copy(isLoading = false) }
             effects { +Effect.ShowErrorSendingBack }
         }
+
+        is Event.Internal.ErrorCreateAccommodation -> {
+            state { copy(isLoading = false) }
+            effects { +Effect.ShowErrorCreateAccommodation }
+        }
+        //is Event.Internal.ErrorCreateTrip -> {
+        //    state { copy(isLoading = false) }
+        //    effects { +Effect.ShowErrorCreateTrip }
+        //}
+        is Event.Internal.SuccessCreateAccommodation -> {
+            state { copy(isLoading = false) }
+            effects { +Effect.AccommodationCreated(event.createAccommodation) }
+        }
+        //is Event.Internal.SuccessCreateTrip -> {
+        //    state { copy(isLoading = false) }
+        //    effects { +Effect.TripCreated(event.createTrip) }
+        //}
     }
 
     override fun Result.ui(event: Event.Ui) = when (event) {
-        is Event.Ui.OnTripClicked -> {
-            effects { +Effect.ToTripDetailsActivity(event.tripId) }
-        }
         is Event.Ui.ShowRequestDetails -> {
             state { copy(isLoading = true) }
             commands { +Command.LoadRequestDetails(event.requestId) }
         }
         is Event.Ui.Init -> {}
         is Event.Ui.OnApproveClicked -> {
-            commands { +Command.ApproveRequest(event.requestId) }
             state { copy(isLoading = true) }
-            commands { +Command.LoadRequestDetails(event.requestId) }
+            effects { +Effect.ShowDialog }
         }
         is Event.Ui.OnDeclineClicked -> {
-            commands { +Command.DeclineRequest(event.requestId) }
             state { copy(isLoading = true) }
+            commands { +Command.DeclineRequest(event.requestId, event.requestChangeStatus) }
             commands { +Command.LoadRequestDetails(event.requestId) }
         }
         is Event.Ui.OnSendBackClicked -> {
-            commands { +Command.SendBackRequest(event.requestId) }
             state { copy(isLoading = true) }
-            commands { +Command.LoadRequestDetails(event.requestId) }
-        }
-        is Event.Ui.OnTicketClicked -> {
-            effects { +Effect.OpenTicket(event.ticket) }
+            commands { +Command.SendBackRequest(event.requestId, event.requestChangeStatus) }
         }
         is Event.Ui.OnCalendarClicked -> {
             effects { +Effect.ShowCalendar(event.date) }
@@ -79,6 +91,23 @@ class Reducer :
         is Event.Ui.OnMapClicked -> {
             effects { +Effect.ShowMap(event.address) }
         }
+
+        //is Event.Ui.OnCancelClicked -> {
+        //    effects { +Effect.CloseDialog }
+        //}
+        is Event.Ui.OnCreateAccommodationClicked -> {
+            state { copy(isLoading = true) }
+            commands { +Command.CreateAccommodation(event.accommodation) }
+        }
+
+        is Event.Ui.OnAccommodationCreated -> {
+            state { copy(isLoading = true) }
+            commands { +Command.ApproveRequest(event.requestId, event.requestChangeStatus) }
+        }
+        //is Event.Ui.OnTripCreated -> {
+        //    state { copy(isLoading = true) }
+        //    commands { +Command.ApproveRequest(event.requestId, event.requestChangeStatus) }
+        //}
     }
 
 }
@@ -102,12 +131,12 @@ class MyActor : Actor<Command, Event> {
                 errorMapper = { Event.Internal.ErrorDetailsLoading }
             )
 
-        is Command.ApproveRequest -> requestRepository.approveRequest(command.requestId)
+        is Command.ApproveRequest -> requestRepository.approveRequest(command.requestId, command.requestChangeStatus)
             .mapEvents(
                 eventMapper = { response ->
                     response.statusCodeHandler(
                         successHandler = {
-                            Event.Internal.SuccessApproving(it, command.requestId)
+                            Event.Internal.SuccessApproving(it)
                         },
                         errorHandler = { Event.Internal.ErrorApproving }
                     )
@@ -115,7 +144,7 @@ class MyActor : Actor<Command, Event> {
                 errorMapper = { Event.Internal.ErrorApproving }
             )
 
-        is Command.SendBackRequest -> requestRepository.sendRequestForEditing(command.requestId)
+        is Command.SendBackRequest -> requestRepository.sendRequestForEditing(command.requestId, command.requestChangeStatus)
             .mapEvents(
                 eventMapper = { response ->
                     response.statusCodeHandler(
@@ -128,7 +157,7 @@ class MyActor : Actor<Command, Event> {
                 errorMapper = { Event.Internal.ErrorSendingBack }
             )
 
-        is Command.DeclineRequest -> requestRepository.declineRequest(command.requestId)
+        is Command.DeclineRequest -> requestRepository.declineRequest(command.requestId, command.requestChangeStatus)
             .mapEvents(
                 eventMapper = { response ->
                     response.statusCodeHandler(
@@ -140,6 +169,31 @@ class MyActor : Actor<Command, Event> {
                 },
                 errorMapper = { Event.Internal.ErrorDeclining }
             )
+
+        is Command.CreateAccommodation -> requestRepository.createAccommodation(command.accommodation)
+            .mapEvents(
+                eventMapper = { response ->
+                    response.statusCodeHandler(
+                        successHandler = {
+                            Event.Internal.SuccessCreateAccommodation(it)
+                        },
+                        errorHandler = { Event.Internal.ErrorCreateAccommodation }
+                    )
+                },
+                errorMapper = { Event.Internal.ErrorCreateAccommodation }
+            )
+        //is Command.CreateTrip -> requestRepository.createTrip(command.trip)
+        //    .mapEvents(
+        //        eventMapper = { response ->
+        //            response.statusCodeHandler(
+        //                successHandler = {
+        //                    Event.Internal.SuccessCreateTrip(it)
+        //                },
+        //                errorHandler = { Event.Internal.ErrorCreateTrip }
+        //            )
+        //        },
+        //        errorMapper = { Event.Internal.ErrorCreateTrip }
+        //    )
     }
 }
 

@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.annotation.RequiresApi
+import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.OutgoingRequestsFragment
 import com.example.businesstripsapp.requests_activity.presentation.Effect
@@ -15,6 +16,7 @@ import com.example.businesstripsapp.requests_activity.presentation.State
 import com.example.businesstripsapp.requests_activity.presentation.storeFactory
 import com.example.businesstripsapp.requests_history_activity.RequestsHistoryActivity
 import com.example.businesstripsapp.create_request_activity.CreateRequestActivity
+import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.requests_activity.requests_fragment.RequestsFragment
 import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmActivity
@@ -25,30 +27,23 @@ class RequestsActivity : ElmActivity<Event, Effect, State>(R.layout.activity_req
 
     override val initEvent: Event = Event.Ui.Init //событие инициализации экрана
 
-    //private var requestsFragment: RequestsFragment = RequestsFragment()
     private var outgoingRequestsFragment: OutgoingRequestsFragment = OutgoingRequestsFragment()
     private var requestsFragment: RequestsFragment = RequestsFragment()
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    private val token = NetworkService.instance.getToken()
+    private val jwt: JWT = JWT(token)
+    private val role: String = jwt.getClaim("role").asString() ?: ""
+    val id: String = jwt.getClaim("id").asString() ?: ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_requests)
 
-        //private val token = NetworkService.instance.getToken()
-        //private val jwt: JWT = JWT(token)
-        //private val role: String = jwt.getClaim("role").asString() ?: ""
-        //val id: String = jwt.getClaim("id").asString() ?: ""
-
-        val token = intent?.getStringExtra("token") ?: ""
-        val userId = getUserId(token)
-
-        //if (role == "ADMIN") {
-        //    supportFragmentManager.beginTransaction().replace(R.id.container, requestsFragment).commit()
-        //} else {
-        //    supportFragmentManager.beginTransaction().replace(R.id.container, outgoingRequestsFragment).commit()
-        //}
-
-        supportFragmentManager.beginTransaction().replace(R.id.container, requestsFragment).commit()
+        if (role == "ADMIN") {
+            supportFragmentManager.beginTransaction().replace(R.id.container, requestsFragment).commit()
+        } else {
+            supportFragmentManager.beginTransaction().replace(R.id.container, outgoingRequestsFragment).commit()
+        }
 
         val buttonBack: ImageButton = findViewById(R.id.button_back)
         buttonBack.setOnClickListener {
@@ -69,11 +64,6 @@ class RequestsActivity : ElmActivity<Event, Effect, State>(R.layout.activity_req
     override fun createStore(): Store<Event, Effect, State> = storeFactory() //создает Store
 
     override fun render(state: State) {  //отрисовывает State на экране
-        //findViewById<TextView>(R.id.currentValue).text = when {
-        //    state.isLoading -> "Loading..."
-        //    state.requestsList.isEmpty() -> "Value = Unknown"
-        //    else -> "Value = ${state.value}"
-        //}
         Log.i("STATE", "render state")
     }
 
@@ -83,12 +73,6 @@ class RequestsActivity : ElmActivity<Event, Effect, State>(R.layout.activity_req
         is Effect.ToRequestCreateActivity -> toRequestCreateActivity()
     }
 
-    //private fun toMainActivity() {
-    //    val intent: Intent = Intent(this, MainActivity::class.java)
-    //    startActivity(intent)
-    //    finish()
-    //}
-
     private fun toRequestsHistoryActivity() {
         val intent: Intent = Intent(this, RequestsHistoryActivity::class.java)
         startActivity(intent)
@@ -97,19 +81,6 @@ class RequestsActivity : ElmActivity<Event, Effect, State>(R.layout.activity_req
     private fun toRequestCreateActivity() {
         val intent: Intent = Intent(this, CreateRequestActivity::class.java)
         startActivity(intent)
-    }
-
-
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun getUserId(token: String) : String {
-        val splitString = token.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
-            .toTypedArray()
-        val base64EncodedBody = splitString[1]
-        val body = String(Base64.getDecoder().decode(base64EncodedBody))
-        val jsonObject = JSONObject(body)
-
-        return jsonObject["id"].toString()
     }
 
 }

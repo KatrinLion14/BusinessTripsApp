@@ -205,7 +205,7 @@
                 app:layout_constraintTop_toBottomOf="@id/outgoing_end_date"
                 android:breakStrategy="simple"
                 android:singleLine="false"
-                android:text="Место командирования"
+                android:text="Адрес офиса командирования"
                 android:textColor="@color/base_700"/>
 
             <TextView
@@ -239,7 +239,7 @@
                 />
 
             <TextView
-                android:id="@+id/outgoing_tickets_title"
+                android:id="@+id/outgoing_seat_place_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -248,6 +248,38 @@
                 android:textAppearance="@style/Text_Body2_14pt"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/outgoing_destination"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:text="Место в офисе"
+                android:textColor="@color/base_700"/>
+
+            <TextView
+                android:id="@+id/outgoing_seat_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body_16pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/outgoing_seat_place_title"
+                android:breakStrategy="simple"
+                android:singleLine="false"
+                android:scrollHorizontally="false"
+                android:inputType="textMultiLine"
+                tools:text="1"
+                android:textColor="@color/base_900"/>
+
+            <TextView
+                android:id="@+id/outgoing_tickets_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="64dp"
+                android:textAppearance="@style/Text_Body2_14pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/outgoing_seat_place"
                 android:breakStrategy="simple"
                 android:singleLine="false"
                 android:text="Билеты"
@@ -283,7 +315,7 @@
                 app:layout_constraintTop_toBottomOf="@id/outgoing_tickets"
                 android:breakStrategy="simple"
                 android:singleLine="false"
-                android:text="Комментарий сотрудника"
+                android:text="Комментарий"
                 android:textColor="@color/base_700"/>
 
             <TextView
@@ -304,6 +336,18 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <RelativeLayout
+        style="@style/GenericProgressBackground"
+        android:id="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <ProgressBar
+            style="@style/GenericProgressIndicator"/>
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

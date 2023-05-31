@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintCircleRadius="15dp"
+    tools:context=".create_accommodation_activity.CreateAccommodationActivity">
+
+
+    <LinearLayout
+        android:id="@+id/accommodation_address"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="28dp"
+        android:padding="4dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_Body2_14pt"
+            android:breakStrategy="simple"
+            android:singleLine="false"
+            android:text="Адрес гостиницы"
+            android:textColor="@color/base_700"
+            android:textIsSelectable="true"
+            />
+
+        <EditText
+            android:id="@+id/accommodation_address_data"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:hint="Введите адрес"
+            android:inputType="textUri"
+            android:padding="4dp"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/Text_Body_16pt"
+            android:textColor="@color/base_900"
+            android:textColorHint="@color/base_400" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/accommodation_bookingURL"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="28dp"
+        android:padding="4dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accommodation_address">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_Body2_14pt"
+            android:breakStrategy="simple"
+            android:singleLine="false"
+            android:text="Ссылка на бронирование"
+            android:textColor="@color/base_700"
+            android:textIsSelectable="true"
+            />
+
+        <EditText
+            android:id="@+id/accommodation_bookingURL_data"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:hint="@string/enter_url"
+            android:inputType="textUri"
+            android:padding="4dp"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/Text_Body_16pt"
+            android:textColor="@color/base_900"
+            android:textColorHint="@color/base_400" />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_create"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/accommodation_bookingURL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/create"
+        style="@style/ButtonPrimary"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/button_create"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        style="@style/ButtonNegativeText"
+        android:text="Отмена"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

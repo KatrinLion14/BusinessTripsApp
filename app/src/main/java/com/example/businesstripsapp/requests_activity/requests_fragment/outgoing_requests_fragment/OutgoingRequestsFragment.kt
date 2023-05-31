@@ -7,16 +7,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
+import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.recycler_view_adapters.IncomingRequestsAdapter
-import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.models.Destination
-import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.models.Office
+import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.domain.models.Destination
+import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.domain.models.Office
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.recycler_view_adapters.OutgoingRequestsAdapter
-import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.models.Request
+import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.domain.models.Request
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.presentation.Command
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.presentation.Effect
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.presentation.Event
@@ -31,22 +34,31 @@ class OutgoingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
     lateinit var requestsAdapter: OutgoingRequestsAdapter
     override val initEvent: Event = Event.Ui.Init //событие инициализации экрана
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    private val token = NetworkService.instance.getToken()
+    private val jwt: JWT = JWT(token)
+    private val role: String = jwt.getClaim("role").asString() ?: ""
+    val userId: String = jwt.getClaim("id").asString() ?: ""
+
+    private var progressBar: RelativeLayout? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         val rootView: View = inflater.inflate(R.layout.fragment_outgoing_requests, container, false)
 
-        val token = activity?.intent?.getStringExtra("token") ?: ""
-        val userId = getUserId(token)
+        progressBar = view?.findViewById(R.id.progressBar)
 
         store.accept(
             Event.Ui.ShowRequests(userId)
         )
 
         return rootView
+    }
+
+    private fun ShowRequests(requestsArray: Array<Request>) {
+        requestsAdapter = OutgoingRequestsAdapter(requestsArray, this)
+        initRecyclerView()
     }
 
     private fun initRecyclerView() {
@@ -58,7 +70,11 @@ class OutgoingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
     }
 
     override fun render(state: State) {
-        Log.i("STATE", "render state")
+        if (state.isLoading) {
+            progressBar?.visibility = View.VISIBLE
+        } else {
+            progressBar?.visibility = View.INVISIBLE
+        }
     }
 
     override fun handleEffect(effect: Effect) = when (effect) {  //обрабатывает side Effect
@@ -78,23 +94,6 @@ class OutgoingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
         intent.putExtra("requestId", requestId)
         intent.putExtra("requestType", "outgoing")
         startActivity(intent)
-    }
-
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun getUserId(token: String) : String {
-        val splitString = token.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
-            .toTypedArray()
-        val base64EncodedBody = splitString[1]
-        val body = String(Base64.getDecoder().decode(base64EncodedBody))
-        val jsonObject = JSONObject(body)
-
-        return jsonObject["id"].toString()
-    }
-
-    private fun ShowRequests(requestsArray: Array<Request>) {
-        requestsAdapter = OutgoingRequestsAdapter(requestsArray, this)
-        initRecyclerView()
     }
 
 }

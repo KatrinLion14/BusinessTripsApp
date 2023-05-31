@@ -1,6 +1,6 @@
 package com.example.businesstripsapp.request_details_activity.request_details_fragment.outgoing_request_details_fragment.presentation
 
-import com.example.businesstripsapp.request_details_activity.models.Request
+import com.example.businesstripsapp.request_details_activity.request_details_fragment.outgoing_request_details_fragment.domain.models.Request
 
 data class State(
     val isLoading: Boolean = false
@@ -9,7 +9,6 @@ data class State(
 sealed class Effect {
     object ShowErrorLoading : Effect()
     data class ShowRequestDetails(val request: Request) : Effect()
-    data class OpenTicket(val ticket: String) : Effect()
     data class ShowCalendar(val date: String) : Effect()
     data class ShowMap(val address: String) : Effect()
 }
@@ -17,7 +16,6 @@ sealed class Effect {
 sealed class Event {
     sealed class Ui : Event() {
         object Init : Ui()
-        data class OnTicketClicked(val ticket: String) :Ui()
         data class GetRequestDetails(val requestId: String) : Ui()
         data class OnCalendarClicked(val date: String) : Ui()
         data class OnMapClicked(val address : String) : Ui()

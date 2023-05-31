@@ -11,7 +11,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.example.businesstripsapp.R
-import com.example.businesstripsapp.request_details_activity.models.Request
+import com.example.businesstripsapp.request_details_activity.request_details_fragment.outgoing_request_details_fragment.domain.models.Request
 import com.example.businesstripsapp.request_details_activity.request_details_fragment.outgoing_request_details_fragment.presentation.Effect
 import com.example.businesstripsapp.request_details_activity.request_details_fragment.outgoing_request_details_fragment.presentation.Event
 import com.example.businesstripsapp.request_details_activity.request_details_fragment.outgoing_request_details_fragment.presentation.State
@@ -84,9 +84,6 @@ class OutgoingRequestDetailsFragment : ElmFragment<Event, Effect, State>(R.layou
         is Effect.ShowMap -> {
             TODO()
         }
-        is Effect.OpenTicket -> {
-            TODO()
-        }
     }
 
     private fun ShowRequestDetails(request: Request) {
@@ -95,17 +92,17 @@ class OutgoingRequestDetailsFragment : ElmFragment<Event, Effect, State>(R.layou
         activity?.findViewById<TextView>(R.id.outgoing_description)!!.text = request.description
         activity?.findViewById<TextView>(R.id.outgoing_start_date)!!.text =  DateToString(request.startDate)
         activity?.findViewById<TextView>(R.id.outgoing_end_date)!!.text = DateToString(request.endDate)
-        activity?.findViewById<TextView>(R.id.outgoing_destination)!!.text = request.destination.office.address
+        activity?.findViewById<TextView>(R.id.outgoing_destination)!!.text = request.destination.office?.address
         activity?.findViewById<TextView>(R.id.outgoing_tickets)!!.text = request.ticketsUrl
         activity?.findViewById<TextView>(R.id.outgoing_comment)!!.text = request.comment
     }
 
 
-    private fun DateToString(date: Date) : String {
+    private fun DateToString(date: Date?) : String? {
         val OLD_FORMAT = "yyyy-MM-dd"
         val NEW_FORMAT = "dd.MM.yyyy"
         val format = SimpleDateFormat(OLD_FORMAT)
-        val oldDateString : String = format.format(date)
+        val oldDateString : String? = date?.let { format.format(it) }
         val newDateString: String
         val d: Date = format.parse(oldDateString)
         format.applyPattern(NEW_FORMAT)

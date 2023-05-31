@@ -27,9 +27,6 @@ class Reducer :
             state { copy(isLoading = true) }
             commands { +Command.LoadRequestDetails(event.requestId) }
         }
-        is Event.Ui.OnTicketClicked -> {
-            effects { +Effect.OpenTicket(event.ticket) }
-        }
         is Event.Ui.OnCalendarClicked -> {
             effects { +Effect.ShowCalendar(event.date) }
         }

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.businesstripsapp.R
-import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.models.Request
+import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.domain.models.Request
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class OutgoingRequestsAdapter(val requestsArray: Array<Request>, val listener: Listener): RecyclerView.Adapter<OutgoingRequestViewHolder>() {
 
@@ -31,13 +33,29 @@ class OutgoingRequestsAdapter(val requestsArray: Array<Request>, val listener: L
         holder.destination.text = destinationCity
 
         val startDate = request.startDate
-        holder.startDate.text = startDate
+        holder.startDate.text = DateToString(startDate)
 
         val endDate = request.endDate
-        holder.endDate.text = endDate
+        holder.endDate.text = DateToString(endDate)
     }
 
     interface Listener {
         fun onClick(request: Request)
+    }
+
+    private fun DateToString(date: Date?) : String? {
+        val OLD_FORMAT = "yyyy-MM-dd"
+        val NEW_FORMAT = "dd.MM.yyyy"
+        val format = SimpleDateFormat(OLD_FORMAT)
+        if (date != null) {
+            val oldDateString : String = format.format(date)
+            val newDateString: String
+            val d: Date = format.parse(oldDateString)
+            format.applyPattern(NEW_FORMAT)
+            newDateString = format.format(d)
+            return newDateString
+        } else {
+            return null
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.presentation
 
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.models.Request
+import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.domain.models.Request
 
 data class State(
     val isLoading: Boolean = false,

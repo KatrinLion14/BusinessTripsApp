@@ -1,12 +1,12 @@
 package com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.domain
 
-import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.models.Request
+import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.domain.models.Request
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-const val REQUEST_URL: String = "/users/{uuid}/incoming-requests-at/"
+const val REQUEST_URL: String = "/users/{uuid}/incoming-requests-at/1"
 
 interface IncomingRequestApi {
     @GET(REQUEST_URL)

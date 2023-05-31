@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.auth0.android.jwt.JWT
 import androidx.annotation.RequiresApi
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.create_request_activity.domain.models.Destination
@@ -30,17 +31,20 @@ import java.util.Date
 import java.util.Locale
 
 class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activity_request_create) {
+
     override val initEvent: Event = Event.Ui.Init
+
     private var createButton: Button? = null
     private var progressBar: RelativeLayout? = null
-    var tripDescription = findViewById<EditText?>(R.id.request_description_data)
-    var startDate = findViewById<TextView?>(R.id.request_start_date)
-    var endDate = findViewById<TextView>(R.id.request_end_date)
-    var destinationDescription = findViewById<EditText>(R.id.destination_description_data)
-    var destinationOfficeId = findViewById<EditText>(R.id.destination_office_id_data)
-    var destinationSeatPlace = findViewById<EditText>(R.id.destination_seat_place_data)
-    var ticketURL = findViewById<EditText>(R.id.ticket_URL_data)
-    var comment = findViewById<EditText>(R.id.comment_data)
+
+    var tripDescription: EditText = findViewById(R.id.request_description_data)
+    var startDate: TextView = findViewById(R.id.request_start_date)
+    var endDate: TextView = findViewById(R.id.request_end_date)
+    var destinationDescription: EditText = findViewById(R.id.destination_description_data)
+    var destinationOfficeId: EditText = findViewById(R.id.destination_office_id_data)
+    var destinationSeatPlace: EditText = findViewById(R.id.destination_seat_place_data)
+    var ticketURL: EditText = findViewById(R.id.ticket_URL_data)
+    var comment: EditText = findViewById(R.id.comment_data)
 
     override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
@@ -71,14 +75,7 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
         }
 
         createButton?.setOnClickListener {
-            tripDescription = findViewById(R.id.request_description_data)
-            startDate = findViewById(R.id.request_start_date)
-            endDate = findViewById(R.id.request_end_date)
-            destinationDescription = findViewById(R.id.destination_description_data)
-            destinationOfficeId = findViewById(R.id.destination_office_id_data)
-            destinationSeatPlace = findViewById(R.id.destination_seat_place_data)
-            ticketURL = findViewById(R.id.ticket_URL_data)
-            comment = findViewById(R.id.comment_data)
+            updateFromEditText()
             if (!isFieldEmpty(destinationOfficeId) && !isFieldEmpty(destinationSeatPlace)) {
                 store.accept(
                     Event.Ui.OnCreateClicked(
@@ -104,7 +101,6 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun handleEffect(effect: Effect) = when (effect) {
         is Effect.ShowErrorNetwork -> Toast.makeText(
             this,
@@ -115,20 +111,11 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
 
         is Effect.DestinationCreated -> {
             val destinationId = effect.createDestination.id
-            //val token = NetworkService.instance.getToken()
-            //val jwt: JWT = JWT(token)
-            //val userId: String = jwt.getClaim("id").asString() ?: ""
-            val token = intent?.getStringExtra("token") ?: ""
-            val userId = getUserId(token)
+            val token = NetworkService.instance.getToken()
+            val jwt: JWT = JWT(token)
+            val userId: String = jwt.getClaim("id").asString() ?: ""
 
-            tripDescription = findViewById(R.id.request_description_data)
-            startDate = findViewById(R.id.request_start_date)
-            endDate = findViewById(R.id.request_end_date)
-            destinationDescription = findViewById(R.id.destination_description_data)
-            destinationOfficeId = findViewById(R.id.destination_office_id_data)
-            destinationSeatPlace = findViewById(R.id.destination_seat_place_data)
-            ticketURL = findViewById(R.id.ticket_URL_data)
-            comment = findViewById(R.id.comment_data)
+            updateFromEditText()
             store.accept(
                 Event.Ui.OnDestinationCreated(
                     Request(
@@ -223,14 +210,14 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
         return format.parse(string) as Date
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun getUserId(token: String) : String {
-        val splitString = token.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
-            .toTypedArray()
-        val base64EncodedBody = splitString[1]
-        val body = String(Base64.getDecoder().decode(base64EncodedBody))
-        val jsonObject = JSONObject(body)
-
-        return jsonObject["id"].toString()
+    private fun updateFromEditText() {
+        tripDescription = findViewById(R.id.request_description_data)
+        startDate = findViewById(R.id.request_start_date)
+        endDate = findViewById(R.id.request_end_date)
+        destinationDescription = findViewById(R.id.destination_description_data)
+        destinationOfficeId = findViewById(R.id.destination_office_id_data)
+        destinationSeatPlace = findViewById(R.id.destination_seat_place_data)
+        ticketURL = findViewById(R.id.ticket_URL_data)
+        comment = findViewById(R.id.comment_data)
     }
 }
