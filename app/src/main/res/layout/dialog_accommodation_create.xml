@@ -4,21 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:paddingBottom="16dp"
     app:layout_constraintCircleRadius="15dp"
-    tools:context=".create_accommodation_activity.CreateAccommodationActivity">
+    tools:context=".request_details_activity.RequestDetailsActivity">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/Text_H2_20pt"
+        android:breakStrategy="simple"
+        android:singleLine="false"
+        android:text="@string/trip_create"
+        android:textColor="@color/base_900"
+        android:textIsSelectable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <LinearLayout
         android:id="@+id/accommodation_address"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="18dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="16dp"
         android:padding="4dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/title">
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,9 +66,9 @@
         android:id="@+id/accommodation_bookingURL"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="18dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="16dp"
         android:padding="4dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,8 +107,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/create"
         style="@style/ButtonPrimary"
@@ -104,8 +122,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         style="@style/ButtonNegativeText"
         android:text="Отмена"/>
 

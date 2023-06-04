@@ -1,9 +1,9 @@
 package com.example.businesstripsapp.create_request_activity
 
 import android.app.DatePickerDialog
-import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -12,7 +12,6 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.auth0.android.jwt.JWT
-import androidx.annotation.RequiresApi
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.create_request_activity.domain.models.Destination
 import com.example.businesstripsapp.create_request_activity.domain.models.Request
@@ -21,14 +20,13 @@ import com.example.businesstripsapp.create_request_activity.presentation.Event
 import com.example.businesstripsapp.create_request_activity.presentation.State
 import com.example.businesstripsapp.create_request_activity.presentation.storeFactory
 import com.example.businesstripsapp.network.NetworkService
-import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmActivity
 import vivid.money.elmslie.core.store.Store
 import java.text.SimpleDateFormat
-import java.util.Base64
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+
 
 class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activity_request_create) {
 
@@ -88,6 +86,19 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
                     )
                 )
             }
+        }
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                store.accept(
+                    Event.Ui.OnBackClicked
+                )
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

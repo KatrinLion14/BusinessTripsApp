@@ -3,6 +3,7 @@ package com.example.businesstripsapp.requests_activity.requests_fragment.incomin
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.domain.models.Request
@@ -30,7 +31,12 @@ class IncomingRequestsAdapter(val requestsArray: Array<Request>, val listener: L
         holder.workerName.text = employeeName
 
         val requestStatus = request.requestStatus
-        holder.requestStatus.text = requestStatus
+        when (requestStatus) {
+            "approved" -> holder.requestStatus.setImageResource(R.drawable.status_request_approved)
+            "pending" -> holder.requestStatus.setImageResource(R.drawable.status_request_pending)
+            "awaitChanges" -> holder.requestStatus.setImageResource(R.drawable.status_request_await_changes)
+            "declined" -> holder.requestStatus.setImageResource(R.drawable.status_request_declined)
+        }
 
         val destinationCity = request.destination.office.address
         holder.destinationCity.text = destinationCity

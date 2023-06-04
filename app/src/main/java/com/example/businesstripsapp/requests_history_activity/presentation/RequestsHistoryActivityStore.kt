@@ -16,12 +16,6 @@ class Reducer :
         is Event.Ui.OnBackClicked -> {
             effects { +Effect.ToPreviousActivity }
         }
-        is Event.Ui.OnRequestHistoryClicked -> {
-            effects { +Effect.ToRequestsHistoryActivity }
-        }
-        is Event.Ui.OnCreateRequestClicked -> {
-            effects { +Effect.ToRequestCreateActivity }
-        }
         is Event.Ui.Init -> {}
     }
 

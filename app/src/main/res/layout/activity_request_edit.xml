@@ -23,7 +23,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_create"
+        app:layout_constraintBottom_toTopOf="@id/button_save"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +32,77 @@
             android:paddingBottom="52dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/id_edit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="28dp"
+                android:padding="4dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Text_Body2_14pt"
+                    android:breakStrategy="simple"
+                    android:singleLine="false"
+                    android:text="Номер"
+                    android:textColor="@color/base_700"
+                    android:textIsSelectable="true"/>
+
+                <TextView
+                    android:id="@+id/edit_id_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Text_Body_16pt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/outgoing_id_title"
+                    android:breakStrategy="simple"
+                    android:singleLine="false"
+                    android:text="Номер"
+                    android:textColor="@color/base_900"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/status_edit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="28dp"
+                android:padding="4dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/id_edit">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Text_Body2_14pt"
+                    android:breakStrategy="simple"
+                    android:singleLine="false"
+                    android:text="Статус"
+                    android:textColor="@color/base_700"
+                    android:textIsSelectable="true"/>
+
+                <TextView
+                    android:id="@+id/edit_status_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Text_Body_16pt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:breakStrategy="simple"
+                    android:singleLine="false"
+                    tools:text="В обработке"
+                    android:textColor="@color/base_900"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/description"
@@ -43,7 +114,7 @@
                 android:padding="4dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/status_edit">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -331,7 +402,7 @@
                     android:textAppearance="@style/Text_Body2_14pt"
                     android:breakStrategy="simple"
                     android:singleLine="false"
-                    android:text="@string/comment_title"
+                    android:text="Комментарий"
                     android:textColor="@color/base_700"
                     android:textIsSelectable="true"
                     />

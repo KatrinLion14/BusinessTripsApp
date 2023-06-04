@@ -14,11 +14,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.network.NetworkService
+import com.example.businesstripsapp.requests_history_activity.RequestsHistoryActivity
+import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.domain.models.Request
+import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.presentation.Effect
+import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.presentation.Event
+import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.presentation.State
+import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.recycler_view_adapters.IncomingRequestsHistoryAdapter
 import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmFragment
 import java.util.Base64
 
-class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.fragment_incoming_requests), IncomingRequestsAdapter.Listener {
+class IncomingRequestsHistoryFragment : ElmFragment<Event, Effect, State>(R.layout.fragment_incoming_requests_history), IncomingRequestsHistoryAdapter.Listener {
 
     lateinit var requestsAdapter: IncomingRequestsHistoryAdapter
     override val initEvent: Event = Event.Ui.Init
@@ -32,7 +38,7 @@ class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val rootView: View = inflater.inflate(R.layout.fragment_incoming_requests, container, false)
+        val rootView: View = inflater.inflate(R.layout.fragment_incoming_requests_history, container, false)
 
         store.accept(
             Event.Ui.ShowRequests(userId)
@@ -43,7 +49,7 @@ class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
 
 
     private fun initRecyclerView() {
-        R.layout.fragment_incoming_requests.apply {
+        R.layout.fragment_incoming_requests_history.apply {
             val recyclerView : RecyclerView? = view?.findViewById(R.id.incoming_requests_recycler_view)
             recyclerView?.layoutManager = LinearLayoutManager(activity)
             recyclerView?.adapter = requestsAdapter
@@ -74,7 +80,7 @@ class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
     }
 
     private fun ShowRequests(requestsArray: Array<Request>) {
-        requestsAdapter = IncomingRequestsAdapter(requestsArray, this)
+        requestsAdapter = IncomingRequestsHistoryAdapter(requestsArray, this)
         initRecyclerView()
     }
 }

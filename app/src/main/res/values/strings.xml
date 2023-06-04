@@ -36,4 +36,5 @@
     <string name="trip_check_in_date">Дата заселения</string>
     <string name="trip_check_out_date">Дата выселения</string>
     <string name="save">Сохранить</string>
+    <string name="trip_create">Создание командировки</string>
 </resources>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/base_800"
     tools:context=".main_activity.home_fragment.HomeFragment">
 
     <LinearLayout
@@ -18,7 +17,7 @@
 
         <TextView
             android:id="@+id/TextHeader"
-            style="@style/TextHeader1"
+            style="@style/Text_H1_28pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -26,18 +25,18 @@
             android:layout_weight="1"
             android:text="Главная"
             android:textAlignment="textStart"
-            android:textColor="@color/base_50" />
+            android:textColor="@color/base_900" />
 
         <ImageButton
             android:id="@+id/notificationButton"
-            style="@style/ButtonText"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="16dp"
             android:layout_weight="0"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_notifications" />
+            android:src="@drawable/ic_notifications"
+            app:tint="@color/info_600"/>
     </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -65,7 +64,6 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:outlineSpotShadowColor="@color/base_300"
-                    app:cardBackgroundColor="@color/base_800"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,22 +84,23 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                style="@style/TextHeader2"
+                                style="@style/Text_H2_20pt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Командировки"
                                 android:textAlignment="textStart"
-                                android:textColor="@color/base_50" />
+                                android:textColor="@color/base_900" />
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="24dp"
+                                android:layout_height="18dp"
                                 android:layout_gravity="end|center_vertical"
                                 android:layout_marginEnd="16dp"
                                 android:layout_weight="0"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/ic_chevron_right" />
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="@color/base_500"/>
                         </LinearLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -122,7 +121,6 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
                     android:outlineSpotShadowColor="@color/base_300"
-                    app:cardBackgroundColor="@color/base_800"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/createUserButton"
@@ -142,13 +140,13 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                style="@style/TextHeader2"
+                                style="@style/Text_H2_20pt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Запросы"
                                 android:textAlignment="textStart"
-                                android:textColor="@color/base_50" />
+                                android:textColor="@color/base_900" />
 
                             <ImageView
                                 android:layout_width="24dp"
@@ -157,7 +155,8 @@
                                 android:layout_marginEnd="16dp"
                                 android:layout_weight="0"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/ic_chevron_right" />
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="@color/base_500"/>
                         </LinearLayout>
 
                         <androidx.recyclerview.widget.RecyclerView

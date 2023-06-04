@@ -216,7 +216,6 @@ class IncomingRequestDetailsFragment: ElmFragment<Event, Effect, State>(R.layout
 
     private fun ShowDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
-        builder.setTitle("Cоздание командировки")
         val viewInflated: View = LayoutInflater.from(activity)
             .inflate(R.layout.dialog_accommodation_create, view as ViewGroup?, false)
         val accommodationAddress = viewInflated.findViewById<View>(R.id.accommodation_address_data) as EditText
@@ -227,7 +226,7 @@ class IncomingRequestDetailsFragment: ElmFragment<Event, Effect, State>(R.layout
         builder.setView(viewInflated)
 
         createButton?.setOnClickListener {
-            DialogInterface.OnClickListener { dialog, which ->
+            DialogInterface.OnClickListener { dialog, _ ->
                 dialog.dismiss()
                 accommodation_address = accommodationAddress.text.toString()
                 accommodation_url = accommodationURL.text.toString()
@@ -244,7 +243,7 @@ class IncomingRequestDetailsFragment: ElmFragment<Event, Effect, State>(R.layout
         }
 
         cancelButton?.setOnClickListener {
-            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() }
+            DialogInterface.OnClickListener { dialog, _ -> dialog.cancel() }
         }
 
         builder.show()

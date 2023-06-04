@@ -14,22 +14,22 @@
 
         <TextView
             android:id="@+id/address"
-            style="@style/Body1"
+            style="@style/Text_Body_16pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:textAlignment="textStart"
-            android:textColor="@color/base_300"
+            android:textColor="@color/base_600"
             tools:text="№1263-54" />
 
         <TextView
             android:id="@+id/status"
-            style="@style/Body2"
+            style="@style/Text_Caption_10pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="0"
             tools:text="Предстоит"
@@ -38,11 +38,11 @@
 
     <TextView
         android:id="@+id/date"
-        style="@style/Body3"
+        style="@style/Text_Body2_14pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="10dp"
         tools:text="12.04.2023"
-        android:textColor="@color/base_400" />
+        android:textColor="@color/base_500" />
 </LinearLayout>

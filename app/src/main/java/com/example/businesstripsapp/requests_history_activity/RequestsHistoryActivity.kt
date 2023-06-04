@@ -1,16 +1,56 @@
 package com.example.businesstripsapp.requests_history_activity
 
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.ImageButton
+import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
-import com.example.businesstripsapp.start_activity.presentation.Effect
-import com.example.businesstripsapp.start_activity.presentation.Event
-import com.example.businesstripsapp.start_activity.presentation.State
+import com.example.businesstripsapp.network.NetworkService
+import com.example.businesstripsapp.requests_history_activity.presentation.Effect
+import com.example.businesstripsapp.requests_history_activity.presentation.Event
+import com.example.businesstripsapp.requests_history_activity.presentation.State
+import com.example.businesstripsapp.requests_history_activity.presentation.storeFactory
+import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.RequestsHistoryFragment
+import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.outgoing_requests_history_fragment.OutgoingRequestsHistoryFragment
 import vivid.money.elmslie.android.base.ElmActivity
+import vivid.money.elmslie.core.store.Store
 
 class RequestsHistoryActivity : ElmActivity<Event, Effect, State>(R.layout.activity_requests_history) {
-    override val initEvent: Event
-        get() = TODO("Not yet implemented")
+    override val initEvent: Event = Event.Ui.Init //событие инициализации экрана
 
-    override fun render(state: State) {
-        TODO("Not yet implemented")
+    private var outgoingRequestsFragment: OutgoingRequestsHistoryFragment = OutgoingRequestsHistoryFragment()
+    private var requestsFragment: RequestsHistoryFragment = RequestsHistoryFragment()
+
+    private val token = NetworkService.instance.getToken()
+    private val jwt: JWT = JWT(token)
+    private val role: String = jwt.getClaim("role").asString() ?: ""
+    val id: String = jwt.getClaim("id").asString() ?: ""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_requests)
+
+        if (role == "ADMIN") {
+            supportFragmentManager.beginTransaction().replace(R.id.container, requestsFragment).commit()
+        } else {
+            supportFragmentManager.beginTransaction().replace(R.id.container, outgoingRequestsFragment).commit()
+        }
+
+        val buttonBack: ImageButton = findViewById(R.id.button_back)
+        buttonBack.setOnClickListener {
+            store.accept(Event.Ui.OnBackClicked)
+        }
     }
+
+    override fun createStore(): Store<Event, Effect, State> = storeFactory() //создает Store
+
+    override fun render(state: State) {  //отрисовывает State на экране
+        Log.i("STATE", "render state")
+    }
+
+    override fun handleEffect(effect: Effect) = when (effect) {  //обрабатывает side Effect
+        is Effect.ToPreviousActivity -> finish()
+    }
+
 }

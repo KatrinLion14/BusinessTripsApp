@@ -14,25 +14,25 @@
         android:layout_weight="1">
 
         <TextView
-            style="@style/Body1"
+            style="@style/Text_Body_16pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:textAlignment="textStart"
-            android:textColor="@color/base_300"
+            android:textColor="@color/base_900"
             android:text="Обновление по заявке" />
 
         <TextView
             android:id="@+id/infoNotification"
-            style="@style/Body3"
+            style="@style/Text_Secondary_12pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="10dp"
             tools:text="12.04.2023"
-            android:textColor="@color/base_400" />
+            android:textColor="@color/base_700" />
     </LinearLayout>
 
     <ImageView

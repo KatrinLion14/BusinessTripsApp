@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/base_800"
     tools:context=".notification_activity.NotificationActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -14,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/TextHeader2">
+        style="@style/Text_H2_20pt">
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -31,13 +30,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Caption"
+            style="@style/Text_Caption_10pt"
             android:text="Дата начала"/>
         <TextView
             android:id="@+id/startDateData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Body2"
+            style="@style/Text_Body2_14pt"
             tools:text="16.04.2023"/>
     </LinearLayout>
 
@@ -55,13 +54,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Caption"
+            style="@style/Text_Caption_10pt"
             android:text="Дата завершения"/>
         <TextView
             android:id="@+id/endDateData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Body2"
+            style="@style/Text_Body2_14pt"
             tools:text="16.04.2023"/>
     </LinearLayout>
 
@@ -79,13 +78,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Caption"
+            style="@style/Text_Caption_10pt"
             android:text="Место командировки"/>
         <TextView
             android:id="@+id/destinationData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Body2"
+            style="@style/Text_Body2_14pt"
             tools:text="Москва, 1-й Волоколамский пр-д, д. 10, стр. 1"/>
     </LinearLayout>
 
@@ -103,13 +102,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Caption"
+            style="@style/Text_Caption_10pt"
             android:text="Статус"/>
         <TextView
             android:id="@+id/statusData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Body2"
+            style="@style/Text_Body2_14pt"
             tools:text="В обработке"/>
     </LinearLayout>
 

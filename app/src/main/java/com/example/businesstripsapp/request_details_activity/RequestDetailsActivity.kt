@@ -3,6 +3,7 @@ package com.example.businesstripsapp.request_details_activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import com.example.businesstripsapp.R
@@ -40,14 +41,6 @@ class RequestDetailsActivity : ElmActivity<Event, Effect, State>(R.layout.activi
         val mBundle = Bundle()
         mBundle.putString("requestId", requestId)
 
-        if (requestType == "incoming") {
-            mFragmentIncoming.arguments = mBundle
-            mFragmentTransaction.replace(R.id.request_details_container, mFragmentIncoming).commit()
-        } else {
-            mFragmentOutgoing.arguments = mBundle
-            mFragmentTransaction.replace(R.id.request_details_container, mFragmentOutgoing).commit()
-        }
-
         val buttonBack: ImageButton = findViewById(R.id.button_back)
         buttonBack.setOnClickListener {
             store.accept(Event.Ui.OnBackClicked)
@@ -56,6 +49,17 @@ class RequestDetailsActivity : ElmActivity<Event, Effect, State>(R.layout.activi
         val buttonEdit : ImageButton = findViewById(R.id.button_edit)
         buttonEdit.setOnClickListener {
             store.accept(Event.Ui.OnEditClicked(requestId))
+        }
+
+        if (requestType == "incoming") {
+            mFragmentIncoming.arguments = mBundle
+            mFragmentTransaction.replace(R.id.request_details_container, mFragmentIncoming).commit()
+            buttonEdit.visibility = View.INVISIBLE
+            buttonEdit.isClickable = false
+            buttonEdit.isEnabled = false
+        } else {
+            mFragmentOutgoing.arguments = mBundle
+            mFragmentTransaction.replace(R.id.request_details_container, mFragmentOutgoing).commit()
         }
     }
 
