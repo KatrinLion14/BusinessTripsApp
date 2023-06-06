@@ -1,5 +1,6 @@
 package com.example.businesstripsapp.create_office_activity
 
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -7,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.create_office_activity.domain.models.Office
 import com.example.businesstripsapp.create_office_activity.presentation.Effect
@@ -15,6 +17,10 @@ import com.example.businesstripsapp.create_office_activity.presentation.State
 import com.example.businesstripsapp.create_office_activity.presentation.storeFactory
 import vivid.money.elmslie.android.base.ElmActivity
 import vivid.money.elmslie.core.store.Store
+import java.io.IOException
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardOpenOption
 
 class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity_create_office) {
     override val initEvent: Event = Event.Ui.Init
@@ -62,6 +68,7 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun handleEffect(effect: Effect) = when (effect) {
         is Effect.ShowErrorNetwork -> Toast.makeText(
             this,
@@ -83,6 +90,10 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
             ).show()
             this.finish()
         }
+
+        is Effect.SaveOfficeId -> {
+            SaveIdToFile(effect.office)
+        }
     }
 
     private fun isFieldEmpty(etField: EditText): Boolean {
@@ -91,6 +102,23 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
             true
         } else {
             false
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun SaveIdToFile(office: Office) {
+        val path = Paths.get("D:/office_ids.txt")
+        val data = office.id.toString() + ", " + office.address.toString() + ", " + office.description.toString()
+        try {
+            Files.write(
+                path,
+                data.toByteArray(),
+                StandardOpenOption.APPEND,
+                StandardOpenOption.CREATE
+            )
+            println("Text appended to the file")
+        } catch (e: IOException) {
+            e.printStackTrace()
         }
     }
 }

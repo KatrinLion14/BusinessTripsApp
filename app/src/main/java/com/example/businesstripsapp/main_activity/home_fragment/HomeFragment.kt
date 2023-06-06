@@ -22,6 +22,7 @@ import com.example.businesstripsapp.main_activity.home_fragment.presentation.Sta
 import com.example.businesstripsapp.main_activity.home_fragment.presentation.storeFactory
 import com.example.businesstripsapp.network.NetworkService
 import com.example.businesstripsapp.notification_activity.NotificationActivity
+import com.example.businesstripsapp.requests_activity.RequestsActivity
 import com.example.businesstripsapp.trips_activity.TripsActivity
 import vivid.money.elmslie.android.base.ElmFragment
 import vivid.money.elmslie.core.store.Store
@@ -146,8 +147,8 @@ class HomeFragment : ElmFragment<Event, Effect, State>() {
     }
 
     private fun toRequestsActivity() {
-//        val intent = Intent(this.context, RequestsActivity::class.java)
-//        startActivity(intent)
+        val intent = Intent(this.context, RequestsActivity::class.java)
+        startActivity(intent)
     }
 
     private fun toTripsActivity() {

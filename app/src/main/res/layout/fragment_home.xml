@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".main_activity.home_fragment.HomeFragment">
 
     <LinearLayout
@@ -35,8 +35,8 @@
             android:layout_marginEnd="16dp"
             android:layout_weight="0"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_notifications"
-            app:tint="@color/info_600"/>
+            android:background="@drawable/ic_notifications"
+            android:backgroundTint="@color/info_600"/>
     </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -148,15 +148,16 @@
                                 android:textAlignment="textStart"
                                 android:textColor="@color/base_900" />
 
-                            <ImageView
+                            <ImageButton
+                                android:id="@+id/requests_button"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_gravity="end|center_vertical"
                                 android:layout_marginEnd="16dp"
                                 android:layout_weight="0"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="@color/base_500"/>
+                                android:background="@drawable/ic_chevron_right"
+                                android:backgroundTint="@color/base_500"/>
                         </LinearLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -169,7 +170,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/createUserButton"
                     style="@style/ButtonPrimary"
                     android:layout_width="match_parent"
@@ -184,7 +185,7 @@
                     android:visibility="gone"
                     tools:visibility="visible"/>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/createOfficeButton"
                     style="@style/ButtonPrimary"
                     android:layout_width="match_parent"
