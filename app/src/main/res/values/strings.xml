@@ -1,9 +1,28 @@
 <resources>
     <string name="app_name">BusinessTripsApp</string>
-    <string name="email">e-mail</string>
-    <string name="password">password</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="requests_title">Заявки</string>
+    <string name="outgoing_requests">Исходящие</string>
+    <string name="incoming_requests">Входящие</string>
+    <string name="outgoing_requests_content_description">Outgoing Requests</string>
+    <string name="incoming_requests_content_description">Incoming Requests</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="requests">Requests</string>
+    <string name="request_description_title">Описание командировки</string>
+    <string name="start_date">Дата начала</string>
+    <string name="enter_description">Введите описание</string>
+    <string name="end_date">Дата окончания</string>
+    <string name="choose_date">Выберите дату</string>
+    <string name="create">Cоздать</string>
+    <string name="destination_description_title">Описание места командирования</string>
+    <string name="destination_create_office_id_title">ID офиса (место командирования)*</string>
+    <string name="enter_office_id">Введите ID офиса</string>
+    <string name="seat_place_title">Номер рабочего места в офисе*</string>
+    <string name="enter_seat_place">Введите номер места</string>
+    <string name="ticket">Билет</string>
+    <string name="enter_url">Введите URL</string>
+    <string name="comment_title">Комментарий для подтверждающего</string>
     <string name="no_data">Нет данных</string>
     <string name="trip_number">Номер</string>
     <string name="trip_status">Статус</string>
@@ -16,4 +35,6 @@
     <string name="trip_accomodation">Гостиница</string>
     <string name="trip_check_in_date">Дата заселения</string>
     <string name="trip_check_out_date">Дата выселения</string>
+    <string name="save">Сохранить</string>
+    <string name="trip_create">Создание командировки</string>
 </resources>

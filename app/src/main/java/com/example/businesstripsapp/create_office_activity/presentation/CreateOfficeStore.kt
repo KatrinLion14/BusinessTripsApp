@@ -15,6 +15,8 @@ class Reducer :
     override fun Result.internal(event: Internal) = when (event) {
         is Internal.SuccessCreateOffice -> {
             state { copy(loading = false) }
+            event.office.id = event.createOffice.id
+            effects { +Effect.SaveOfficeId(event.office) }
             effects { +Effect.ReturnToHome }
         }
 
@@ -48,7 +50,7 @@ class MyActor : Actor<Command, Event> {
             .mapEvents(
                 eventMapper = { response ->
                     response.statusCodeHandler(
-                        successHandler = { Internal.SuccessCreateOffice },
+                        successHandler = { Internal.SuccessCreateOffice(it, command.office) },
                         errorHandler = { Internal.ErrorCreateOffice }
                     )
                 },

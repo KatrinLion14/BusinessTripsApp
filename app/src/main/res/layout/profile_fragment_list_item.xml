@@ -9,7 +9,7 @@
 
         <TextView
             android:id="@+id/fullname"
-            style="@style/Body2"
+            style="@style/Text_Body2_14pt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
