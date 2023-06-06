@@ -68,7 +68,7 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun handleEffect(effect: Effect) = when (effect) {
         is Effect.ShowErrorNetwork -> Toast.makeText(
             this,
@@ -92,7 +92,7 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
         }
 
         is Effect.SaveOfficeId -> {
-            SaveIdToFile(effect.office)
+            SaveId(effect.office)
         }
     }
 
@@ -105,20 +105,7 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun SaveIdToFile(office: Office) {
-        val path = Paths.get("D:/office_ids.txt")
-        val data = office.id.toString() + ", " + office.address.toString() + ", " + office.description.toString()
-        try {
-            Files.write(
-                path,
-                data.toByteArray(),
-                StandardOpenOption.APPEND,
-                StandardOpenOption.CREATE
-            )
-            println("Text appended to the file")
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+    private fun SaveId(office: Office) {
+        //TODO
     }
 }

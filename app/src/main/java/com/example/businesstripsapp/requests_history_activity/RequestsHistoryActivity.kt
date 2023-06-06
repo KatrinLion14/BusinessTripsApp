@@ -19,8 +19,7 @@ import vivid.money.elmslie.core.store.Store
 class RequestsHistoryActivity : ElmActivity<Event, Effect, State>(R.layout.activity_requests_history) {
     override val initEvent: Event = Event.Ui.Init //событие инициализации экрана
 
-    private var outgoingRequestsFragment: OutgoingRequestsHistoryFragment = OutgoingRequestsHistoryFragment()
-    private var requestsFragment: RequestsHistoryFragment = RequestsHistoryFragment()
+    override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
     private val token = NetworkService.instance.getToken()
     private val jwt: JWT = JWT(token)
@@ -29,12 +28,12 @@ class RequestsHistoryActivity : ElmActivity<Event, Effect, State>(R.layout.activ
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_requests)
+        setContentView(R.layout.activity_requests_history)
 
         if (role == "ADMIN") {
-            supportFragmentManager.beginTransaction().replace(R.id.container, requestsFragment).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.container, RequestsHistoryFragment()).commit()
         } else {
-            supportFragmentManager.beginTransaction().replace(R.id.container, outgoingRequestsFragment).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.container, OutgoingRequestsHistoryFragment()).commit()
         }
 
         val buttonBack: ImageButton = findViewById(R.id.button_back)
@@ -42,8 +41,6 @@ class RequestsHistoryActivity : ElmActivity<Event, Effect, State>(R.layout.activ
             store.accept(Event.Ui.OnBackClicked)
         }
     }
-
-    override fun createStore(): Store<Event, Effect, State> = storeFactory() //создает Store
 
     override fun render(state: State) {  //отрисовывает State на экране
         Log.i("STATE", "render state")

@@ -173,8 +173,6 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/createUserButton"
                     style="@style/ButtonPrimary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="32dp"
@@ -188,8 +186,6 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/createOfficeButton"
                     style="@style/ButtonPrimary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"

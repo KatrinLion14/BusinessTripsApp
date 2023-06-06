@@ -24,6 +24,7 @@ import java.util.Date
 class OutgoingRequestDetailsFragment : ElmFragment<Event, Effect, State>(R.layout.fragment_outgoing_request_details) {
 
     override val initEvent: Event = Event.Ui.Init //событие инициализации экрана
+    override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,8 +69,6 @@ class OutgoingRequestDetailsFragment : ElmFragment<Event, Effect, State>(R.layou
 
         return rootView
     }
-
-    override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
     override fun render(state: State) {
         Log.i("STATE", "render state")

@@ -23,6 +23,8 @@ class RequestDetailsActivity : ElmActivity<Event, Effect, State>(R.layout.activi
 
     override val initEvent: Event = Event.Ui.Init //событие инициализации экрана
 
+    override fun createStore(): Store<Event, Effect, State> = storeFactory()
+
     private var outgoingRequestDetailsFragment: OutgoingRequestDetailsFragment = OutgoingRequestDetailsFragment()
     private var incomingRequestDetailsFragment: IncomingRequestDetailsFragment = IncomingRequestDetailsFragment()
 
@@ -62,8 +64,6 @@ class RequestDetailsActivity : ElmActivity<Event, Effect, State>(R.layout.activi
             mFragmentTransaction.replace(R.id.request_details_container, mFragmentOutgoing).commit()
         }
     }
-
-    override fun createStore(): Store<Event, Effect, State> = storeFactory() //создает Store
 
     override fun render(state: State) {  //отрисовывает State на экране
         //findViewById<TextView>(R.id.currentValue).text = when {

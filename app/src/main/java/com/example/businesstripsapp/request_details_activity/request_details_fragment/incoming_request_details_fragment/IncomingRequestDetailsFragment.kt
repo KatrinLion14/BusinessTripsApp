@@ -37,6 +37,8 @@ class IncomingRequestDetailsFragment: ElmFragment<Event, Effect, State>(R.layout
     private var requestId : String? = null
     private var userId : String? = null
 
+    override fun createStore(): Store<Event, Effect, State> = storeFactory()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -112,8 +114,6 @@ class IncomingRequestDetailsFragment: ElmFragment<Event, Effect, State>(R.layout
 
         return rootView
     }
-
-    override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
     override fun render(state: State) {
         Log.i("STATE", "render state")

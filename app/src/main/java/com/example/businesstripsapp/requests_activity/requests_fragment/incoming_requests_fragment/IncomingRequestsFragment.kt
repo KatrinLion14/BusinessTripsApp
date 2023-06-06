@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,15 +20,20 @@ import com.example.businesstripsapp.requests_activity.requests_fragment.incoming
 import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.presentation.Effect
 import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.presentation.Event
 import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.presentation.State
+import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.presentation.storeFactory
 import com.example.businesstripsapp.requests_history_activity.RequestsHistoryActivity
 import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmFragment
+import vivid.money.elmslie.core.store.Store
 import java.util.Base64
 
 class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.fragment_incoming_requests), IncomingRequestsAdapter.Listener {
 
     lateinit var requestsAdapter: IncomingRequestsAdapter
     override val initEvent: Event = Event.Ui.Init
+    override fun createStore(): Store<Event, Effect, State> = storeFactory()
+
+    private var progressBar: RelativeLayout? = null
 
     private val token = NetworkService.instance.getToken()
     private val jwt: JWT = JWT(token)
@@ -39,6 +45,8 @@ class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
         savedInstanceState: Bundle?
     ): View {
         val rootView: View = inflater.inflate(R.layout.fragment_incoming_requests, container, false)
+
+        progressBar = view?.findViewById(R.id.progressBarContainer)
 
         store.accept(
             Event.Ui.ShowRequests(userId)
@@ -57,7 +65,11 @@ class IncomingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
     }
 
     override fun render(state: State) {
-        Log.i("STATE", "render state")
+        if (state.isLoading) {
+            progressBar?.visibility = View.VISIBLE
+        } else {
+            progressBar?.visibility = View.INVISIBLE
+        }
     }
 
     override fun handleEffect(effect: Effect) = when (effect) {

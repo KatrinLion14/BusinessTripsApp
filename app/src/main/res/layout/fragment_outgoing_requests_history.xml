@@ -30,17 +30,18 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/adapter_outgoing_request" />
 
-        <RelativeLayout
-            style="@style/GenericProgressBackground"
-            android:id="@+id/loadingPanel"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            >
+        <FrameLayout
+            android:id="@+id/progressBarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/load"
+            android:clickable="true"
+            android:visibility="gone">
+
             <ProgressBar
-                style="@style/GenericProgressIndicator"/>
-        </RelativeLayout>
+                android:id="@+id/pBar"
+                style="@style/GenericProgressIndicator" />
+        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout

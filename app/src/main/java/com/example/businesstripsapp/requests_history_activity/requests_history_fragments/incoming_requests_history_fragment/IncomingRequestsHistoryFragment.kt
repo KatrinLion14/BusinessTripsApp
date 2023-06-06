@@ -19,15 +19,19 @@ import com.example.businesstripsapp.requests_history_activity.requests_history_f
 import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.presentation.Effect
 import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.presentation.Event
 import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.presentation.State
+import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.presentation.storeFactory
 import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.incoming_requests_history_fragment.recycler_view_adapters.IncomingRequestsHistoryAdapter
 import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmFragment
+import vivid.money.elmslie.core.store.Store
 import java.util.Base64
 
 class IncomingRequestsHistoryFragment : ElmFragment<Event, Effect, State>(R.layout.fragment_incoming_requests_history), IncomingRequestsHistoryAdapter.Listener {
 
     lateinit var requestsAdapter: IncomingRequestsHistoryAdapter
     override val initEvent: Event = Event.Ui.Init
+
+    override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
     private val token = NetworkService.instance.getToken()
     private val jwt: JWT = JWT(token)

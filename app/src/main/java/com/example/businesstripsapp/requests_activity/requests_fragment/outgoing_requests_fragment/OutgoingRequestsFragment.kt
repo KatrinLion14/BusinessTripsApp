@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.network.NetworkService
+import com.example.businesstripsapp.request_details_activity.RequestDetailsActivity
 import com.example.businesstripsapp.requests_activity.requests_fragment.incoming_requests_fragment.recycler_view_adapters.IncomingRequestsAdapter
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.domain.models.Destination
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.domain.models.Office
@@ -24,9 +25,11 @@ import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.presentation.Effect
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.presentation.Event
 import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.presentation.State
+import com.example.businesstripsapp.requests_activity.requests_fragment.outgoing_requests_fragment.presentation.storeFactory
 import com.example.businesstripsapp.requests_history_activity.RequestsHistoryActivity
 import org.json.JSONObject
 import vivid.money.elmslie.android.base.ElmFragment
+import vivid.money.elmslie.core.store.Store
 import java.util.Base64
 
 class OutgoingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.fragment_outgoing_requests), OutgoingRequestsAdapter.Listener {
@@ -39,15 +42,18 @@ class OutgoingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
     private val role: String = jwt.getClaim("role").asString() ?: ""
     val userId: String = jwt.getClaim("id").asString() ?: ""
 
+    override fun createStore(): Store<Event, Effect, State> = storeFactory()
+
+
     private var progressBar: RelativeLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val rootView: View = inflater.inflate(R.layout.fragment_outgoing_requests, container, false)
+        val rootView: View = inflater.inflate(R.layout.fragment_outgoing_requests, null)
 
-        progressBar = view?.findViewById(R.id.progressBar)
+        progressBar = view?.findViewById(R.id.progressBarContainer)
 
         store.accept(
             Event.Ui.ShowRequests(userId)
@@ -90,7 +96,7 @@ class OutgoingRequestsFragment : ElmFragment<Event, Effect, State>(R.layout.frag
     }
 
     private fun toRequestDetailsActivity(requestId: String) {
-        val intent: Intent = Intent(activity, RequestsHistoryActivity::class.java)
+        val intent: Intent = Intent(activity, RequestDetailsActivity::class.java)
         intent.putExtra("requestId", requestId)
         intent.putExtra("requestType", "outgoing")
         startActivity(intent)

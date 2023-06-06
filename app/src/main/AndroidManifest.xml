@@ -29,60 +29,54 @@
         <activity
             android:name=".subordinate_details_activity.SubordinateDetailsActivity"
             android:exported="false"
-            android:parentActivityName=".main_activity.MainActivity"
-            android:theme="@style/MainTheme" />
+            android:parentActivityName=".main_activity.MainActivity" />
+
         <activity
             android:name=".create_office_activity.CreateOfficeActivity"
             android:exported="false"
-            android:parentActivityName=".main_activity.MainActivity"
-            android:theme="@style/MainTheme" />
+            android:parentActivityName=".main_activity.MainActivity" />
+
         <activity
             android:name=".create_user_activity.CreateUserActivity"
             android:exported="false"
-            android:parentActivityName=".main_activity.MainActivity"
-            android:theme="@style/MainTheme" />
+            android:parentActivityName=".main_activity.MainActivity" />
+
         <activity
             android:name=".notification_details_activity.NotificationDetailsActivity"
             android:exported="false"
-            android:parentActivityName=".notification_activity.NotificationActivity"
-            android:theme="@style/MainTheme" />
+            android:parentActivityName=".notification_activity.NotificationActivity" />
+
         <activity
             android:name=".notification_activity.NotificationActivity"
             android:exported="false"
-            android:parentActivityName=".main_activity.MainActivity"
-            android:theme="@style/MainTheme" />
+            android:parentActivityName=".main_activity.MainActivity" />
+
         <activity
             android:name=".main_activity.MainActivity"
-            android:exported="false"
-            android:theme="@style/MainTheme" />
+            android:exported="false" />
 
         <activity
             android:name=".start_activity.StartActivity"
-            android:exported="true"
-            android:theme="@style/MainTheme">
+            android:exported="true">
         </activity>
         <activity
             android:name=".requests_activity.RequestsActivity"
-            android:exported="false"
-            android:parentActivityName=".main_activity.MainActivity">
+            android:exported="false">
         </activity>
 
         <activity
             android:name=".create_request_activity.CreateRequestActivity"
-            android:exported="false"
-            android:parentActivityName=".requests_activity.RequestsActivity">
+            android:exported="false">
         </activity>
 
         <activity
             android:name=".request_details_activity.RequestDetailsActivity"
-            android:exported="false"
-            android:parentActivityName=".requests_activity.RequestsActivity">
+            android:exported="false">
         </activity>
 
         <activity
             android:name=".requests_history_activity.RequestsHistoryActivity"
-            android:exported="false"
-            android:parentActivityName=".requests_activity.RequestsActivity">
+            android:exported="false">
         </activity>
 
         <activity
@@ -92,13 +86,11 @@
         </activity>
         <activity
             android:name=".trips_history_activity.TripsHistoryActivity"
-            android:exported="true"
-            android:theme="@style/MainTheme">
+            android:exported="true">
         </activity>
         <activity
             android:name=".trip_info_activity.TripInfoActivity"
-            android:exported="true"
-            android:theme="@style/MainTheme">
+            android:exported="true">
         </activity>
     </application>
 

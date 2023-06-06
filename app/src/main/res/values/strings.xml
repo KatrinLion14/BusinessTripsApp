@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">BusinessTripsApp</string>
     <string name="email">E-mail</string>
-    <string name="password">Password</string>
+    <string name="password">Пароль</string>
+    <string name="home">Главная</string>
+    <string name="profile">Профиль</string>
     <string name="requests_title">Заявки</string>
     <string name="outgoing_requests">Исходящие</string>
     <string name="incoming_requests">Входящие</string>

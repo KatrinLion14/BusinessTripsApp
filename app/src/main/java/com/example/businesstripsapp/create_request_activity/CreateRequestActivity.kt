@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -32,19 +33,23 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
 
     override val initEvent: Event = Event.Ui.Init
 
-    private var createButton: Button? = null
-    private var progressBar: RelativeLayout? = null
-
-    var tripDescription: EditText = findViewById(R.id.request_description_data)
-    var startDate: TextView = findViewById(R.id.request_start_date)
-    var endDate: TextView = findViewById(R.id.request_end_date)
-    var destinationDescription: EditText = findViewById(R.id.destination_description_data)
-    var destinationOfficeId: EditText = findViewById(R.id.destination_office_id_data)
-    var destinationSeatPlace: EditText = findViewById(R.id.destination_seat_place_data)
-    var ticketURL: EditText = findViewById(R.id.ticket_URL_data)
-    var comment: EditText = findViewById(R.id.comment_data)
-
     override fun createStore(): Store<Event, Effect, State> = storeFactory()
+
+    private val token = NetworkService.instance.getToken()
+    private val jwt: JWT = JWT(token)
+    private val userId: String = jwt.getClaim("id").asString() ?: ""
+
+    private var createButton: Button? = null
+    private var progressBar: FrameLayout? = null
+
+    private var tripDescription: EditText? = null
+    private var startDate: TextView? = null
+    private var endDate: TextView? = null
+    private var destinationDescription: EditText? = null
+    private var destinationOfficeId: EditText? = null
+    private var destinationSeatPlace: EditText? = null
+    private var ticketURL: EditText? = null
+    private var comment: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +63,15 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
+
+        tripDescription = findViewById(R.id.request_description_data)
+        startDate = findViewById(R.id.request_start_date)
+        endDate = findViewById(R.id.request_end_date)
+        destinationDescription = findViewById(R.id.destination_description_data)
+        destinationOfficeId = findViewById(R.id.destination_office_id_data)
+        destinationSeatPlace = findViewById(R.id.destination_seat_place_data)
+        ticketURL = findViewById(R.id.ticket_URL_data)
+        comment = findViewById(R.id.comment_data)
 
 
         findViewById<ImageButton>(R.id.start_date_button)!!.setOnClickListener {
@@ -74,14 +88,14 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
 
         createButton?.setOnClickListener {
             updateFromEditText()
-            if (!isFieldEmpty(destinationOfficeId) && !isFieldEmpty(destinationSeatPlace)) {
+            if (!isFieldEmpty(destinationOfficeId!!) && !isFieldEmpty(destinationSeatPlace!!)) {
                 store.accept(
                     Event.Ui.OnCreateClicked(
                         Destination(
                             id = null,
-                            description = destinationDescription.text.toString(),
-                            officeId = destinationOfficeId.text.toString(),
-                            seatPlace = destinationSeatPlace.text.toString()
+                            description = destinationDescription!!.text.toString(),
+                            officeId = destinationOfficeId!!.text.toString(),
+                            seatPlace = destinationSeatPlace!!.text.toString()
                         )
                     )
                 )
@@ -122,22 +136,19 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
 
         is Effect.DestinationCreated -> {
             val destinationId = effect.createDestination.id
-            val token = NetworkService.instance.getToken()
-            val jwt: JWT = JWT(token)
-            val userId: String = jwt.getClaim("id").asString() ?: ""
 
             updateFromEditText()
             store.accept(
                 Event.Ui.OnDestinationCreated(
                     Request(
                         id = null,
-                        description = tripDescription.text.toString(),
+                        description = tripDescription?.text.toString(),
                         workerId = userId,
                         destinationId = destinationId,
-                        comment = comment.text.toString(),
-                        startDate = StringToDate(startDate.text.toString()),
-                        endDate = StringToDate(endDate.text.toString()),
-                        ticketsUrl = ticketURL.text.toString()
+                        comment = comment?.text.toString(),
+                        startDate = StringToDate(startDate?.text.toString()),
+                        endDate = StringToDate(endDate?.text.toString()),
+                        ticketsUrl = ticketURL?.text.toString()
                     )
                 )
             )
@@ -174,7 +185,7 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
                     dayOfMonth.toString()
                 }
                 val date : String = "$dayString.$monthString.$year"
-                startDate.setText(date)
+                startDate?.setText(date)
             }, year, month, day)
 
             dpd.show()
@@ -198,7 +209,7 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
                     dayOfMonth.toString()
                 }
                 val date : String = "$dayString.$monthString.$year"
-                endDate.setText(date)
+                endDate?.setText(date)
 
             }, year, month, day)
 

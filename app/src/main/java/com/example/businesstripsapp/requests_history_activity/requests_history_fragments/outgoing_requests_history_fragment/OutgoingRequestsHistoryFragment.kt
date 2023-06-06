@@ -17,12 +17,15 @@ import com.example.businesstripsapp.requests_history_activity.requests_history_f
 import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.outgoing_requests_history_fragment.presentation.Effect
 import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.outgoing_requests_history_fragment.presentation.Event
 import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.outgoing_requests_history_fragment.presentation.State
+import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.outgoing_requests_history_fragment.presentation.storeFactory
 import com.example.businesstripsapp.requests_history_activity.requests_history_fragments.outgoing_requests_history_fragment.recycler_view_adapters.OutgoingRequestsHistoryAdapter
 import vivid.money.elmslie.android.base.ElmFragment
+import vivid.money.elmslie.core.store.Store
 
 class OutgoingRequestsHistoryFragment : ElmFragment<Event, Effect, State>(R.layout.fragment_outgoing_requests_history), OutgoingRequestsHistoryAdapter.Listener {
     lateinit var requestsAdapter: OutgoingRequestsHistoryAdapter
     override val initEvent: Event = Event.Ui.Init //событие инициализации экрана
+    override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
     private val token = NetworkService.instance.getToken()
     private val jwt: JWT = JWT(token)
@@ -37,7 +40,7 @@ class OutgoingRequestsHistoryFragment : ElmFragment<Event, Effect, State>(R.layo
     ): View {
         val rootView: View = inflater.inflate(R.layout.fragment_outgoing_requests, container, false)
 
-        progressBar = view?.findViewById(R.id.progressBar)
+        progressBar = view?.findViewById(R.id.progressBarContainer)
 
         store.accept(
             Event.Ui.ShowRequests(userId)

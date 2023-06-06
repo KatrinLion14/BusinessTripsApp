@@ -13,8 +13,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class RequestsFragment : Fragment() {
 
-    private lateinit var viewPager: ViewPager2
-    private lateinit var tabLayout: TabLayout
+    private var viewPager: ViewPager2? = null
+    private var tabLayout: TabLayout? = null
+    private var rootView: View? = null
     private val tabTitles: Array<String> = arrayOf(
         "Исходящие",
         "Входящие",
@@ -24,19 +25,21 @@ class RequestsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_requests_container, container, false)
-        tabLayout = view.findViewById(R.id.requests_tabs)
-        viewPager = view.findViewById(R.id.viewpager)
+        rootView = inflater.inflate(R.layout.fragment_requests_container, null)
+        tabLayout = rootView?.findViewById(R.id.requests_tabs)
+        viewPager = rootView?.findViewById(R.id.viewpager)
 
         val pagerAdapter = ViewPagerAdapter(this)
-        viewPager.adapter = pagerAdapter
+        viewPager?.adapter = pagerAdapter
 
-        TabLayoutMediator(
-            tabLayout, viewPager
-        ) { tab: TabLayout.Tab, position: Int ->
-            tab.text = tabTitles[position]
-        }.attach()
+        if (tabLayout != null && viewPager != null) {
+            TabLayoutMediator(
+                tabLayout!!, viewPager!!
+            ) { tab: TabLayout.Tab, position: Int ->
+                tab.text = tabTitles[position]
+            }.attach()
+        }
 
-        return view
+        return rootView
     }
 }

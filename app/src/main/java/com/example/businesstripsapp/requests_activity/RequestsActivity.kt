@@ -27,22 +27,21 @@ class RequestsActivity : ElmActivity<Event, Effect, State>(R.layout.activity_req
 
     override val initEvent: Event = Event.Ui.Init //событие инициализации экрана
 
-    private var outgoingRequestsFragment: OutgoingRequestsFragment = OutgoingRequestsFragment()
-    private var requestsFragment: RequestsFragment = RequestsFragment()
+    override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
     private val token = NetworkService.instance.getToken()
     private val jwt: JWT = JWT(token)
     private val role: String = jwt.getClaim("role").asString() ?: ""
-    val id: String = jwt.getClaim("id").asString() ?: ""
+    private val userId: String = jwt.getClaim("id").asString() ?: ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_requests)
 
         if (role == "ADMIN") {
-            supportFragmentManager.beginTransaction().replace(R.id.container, requestsFragment).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.container, RequestsFragment()).commit()
         } else {
-            supportFragmentManager.beginTransaction().replace(R.id.container, outgoingRequestsFragment).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.container, OutgoingRequestsFragment()).commit()
         }
 
         val buttonBack: ImageButton = findViewById(R.id.button_back)
@@ -60,8 +59,6 @@ class RequestsActivity : ElmActivity<Event, Effect, State>(R.layout.activity_req
             store.accept(Event.Ui.OnCreateRequestClicked)
         }
     }
-
-    override fun createStore(): Store<Event, Effect, State> = storeFactory() //создает Store
 
     override fun render(state: State) {  //отрисовывает State на экране
         Log.i("STATE", "render state")
