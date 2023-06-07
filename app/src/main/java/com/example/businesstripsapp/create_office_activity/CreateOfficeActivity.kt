@@ -1,6 +1,5 @@
 package com.example.businesstripsapp.create_office_activity
 
-import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -8,24 +7,29 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.example.businesstripsapp.R
 import com.example.businesstripsapp.create_office_activity.domain.models.Office
 import com.example.businesstripsapp.create_office_activity.presentation.Effect
 import com.example.businesstripsapp.create_office_activity.presentation.Event
 import com.example.businesstripsapp.create_office_activity.presentation.State
 import com.example.businesstripsapp.create_office_activity.presentation.storeFactory
+import com.example.businesstripsapp.create_office_activity.roomDB.AppDatabase
+import com.example.businesstripsapp.create_office_activity.roomDB.OfficeDB
 import vivid.money.elmslie.android.base.ElmActivity
 import vivid.money.elmslie.core.store.Store
-import java.io.IOException
-import java.nio.file.Files
-import java.nio.file.Paths
-import java.nio.file.StandardOpenOption
 
 class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity_create_office) {
     override val initEvent: Event = Event.Ui.Init
     private var createButton: Button? = null
     private var progressBar: FrameLayout? = null
+
+    var officeDB: OfficeDB? = null
+    var officesList: List<OfficeDB>? = null
+
+    var officeAddress: String? = null
+    var officeDescription: String? = null
+
+    var db: AppDatabase? = null
 
     override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
@@ -34,6 +38,10 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
         setContentView(R.layout.activity_create_office)
         createButton = findViewById(R.id.buttonContinue)
         progressBar = findViewById(R.id.progressBarContainer)
+
+        db = AppDatabase.build(applicationContext)
+        officesList = ArrayList()
+        officeDB = OfficeDB()
 
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.apply {
@@ -46,6 +54,8 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
         val descriptionText = findViewById<EditText>(R.id.officeDescriptionData)
         createButton?.setOnClickListener {
             if (!isFieldEmpty(addressText) && !isFieldEmpty(descriptionText)) {
+                officeDB?.address = addressText.text.toString()
+                officeDB?.description = descriptionText.text.toString()
                 store.accept(
                     Event.Ui.CreateClick(
                         Office(
@@ -92,7 +102,9 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
         }
 
         is Effect.SaveOfficeId -> {
-            SaveId(effect.office)
+            officeDB?.id = effect.office.id
+            db?.officeDao()?.insertOffice(officeDB)
+            Toast.makeText(applicationContext, "Office added", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -105,7 +117,4 @@ class CreateOfficeActivity : ElmActivity<Event, Effect, State>(R.layout.activity
         }
     }
 
-    private fun SaveId(office: Office) {
-        //TODO
-    }
 }

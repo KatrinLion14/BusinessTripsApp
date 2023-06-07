@@ -228,17 +228,26 @@
                     android:textIsSelectable="true"
                     />
 
-                <EditText
-                    android:id="@+id/destination_office_id_data"
+
+                <RelativeLayout
+                    android:id="@+id/office_id_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:hint="@string/enter_office_id"
-                    android:inputType="text"
-                    android:padding="4dp"
-                    android:layout_marginTop="4dp"
-                    android:textAppearance="@style/Text_Body_16pt"
-                    android:textColor="@color/base_900"
-                    android:textColorHint="@color/base_400" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/background_with_shadow"
+                    android:orientation="vertical"
+                    android:radius="10dp">
+
+                    <Spinner
+                        android:id="@+id/office_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/Text_Body_16pt"
+                        android:textColor="@color/base_900"
+                        android:textColorHint="@color/base_400" />
+                </RelativeLayout>
+
+
             </LinearLayout>
 
             <LinearLayout

@@ -5,15 +5,19 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.RelativeLayout
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import com.auth0.android.jwt.JWT
 import com.example.businesstripsapp.R
+import com.example.businesstripsapp.create_office_activity.roomDB.AppDatabase
+import com.example.businesstripsapp.create_office_activity.roomDB.OfficeDB
 import com.example.businesstripsapp.create_request_activity.domain.models.Destination
 import com.example.businesstripsapp.create_request_activity.domain.models.Request
 import com.example.businesstripsapp.create_request_activity.presentation.Effect
@@ -33,6 +37,11 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
 
     override val initEvent: Event = Event.Ui.Init
 
+    private var db: AppDatabase? = null
+    private var officeDB: OfficeDB? = null
+    //private var officesList: List<String?>? = null
+    private var officeAdapter: ArrayAdapter<String>? = null
+
     override fun createStore(): Store<Event, Effect, State> = storeFactory()
 
     private val token = NetworkService.instance.getToken()
@@ -46,16 +55,43 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
     private var startDate: TextView? = null
     private var endDate: TextView? = null
     private var destinationDescription: EditText? = null
-    private var destinationOfficeId: EditText? = null
+    private var destinationOfficeId: String? = null
     private var destinationSeatPlace: EditText? = null
     private var ticketURL: EditText? = null
     private var comment: EditText? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_request_create)
         createButton = findViewById(R.id.button_create)
         progressBar = findViewById(R.id.progressBarContainer)
+
+        db = AppDatabase.build(applicationContext)
+        officeDB = OfficeDB()
+        val officesList: List<String?>? = db?.officeDao()?.idsList()
+        val offices: List<String?> = getOfficesIds(officesList)
+
+        officeAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, offices)
+
+        val officeSpinner: Spinner = findViewById(R.id.office_spinner)
+        officeSpinner.adapter = officeAdapter
+
+        val itemSelectedListener: AdapterView.OnItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    destinationOfficeId = offices[position]
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
+        officeSpinner.onItemSelectedListener = itemSelectedListener
+
 
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.apply {
@@ -68,7 +104,6 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
         startDate = findViewById(R.id.request_start_date)
         endDate = findViewById(R.id.request_end_date)
         destinationDescription = findViewById(R.id.destination_description_data)
-        destinationOfficeId = findViewById(R.id.destination_office_id_data)
         destinationSeatPlace = findViewById(R.id.destination_seat_place_data)
         ticketURL = findViewById(R.id.ticket_URL_data)
         comment = findViewById(R.id.comment_data)
@@ -88,13 +123,13 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
 
         createButton?.setOnClickListener {
             updateFromEditText()
-            if (!isFieldEmpty(destinationOfficeId!!) && !isFieldEmpty(destinationSeatPlace!!)) {
+            if ((destinationOfficeId != null) && !isFieldEmpty(destinationSeatPlace!!)) {
                 store.accept(
                     Event.Ui.OnCreateClicked(
                         Destination(
                             id = null,
                             description = destinationDescription!!.text.toString(),
-                            officeId = destinationOfficeId!!.text.toString(),
+                            officeId = destinationOfficeId,
                             seatPlace = destinationSeatPlace!!.text.toString()
                         )
                     )
@@ -237,9 +272,29 @@ class CreateRequestActivity : ElmActivity<Event, Effect, State>(R.layout.activit
         startDate = findViewById(R.id.request_start_date)
         endDate = findViewById(R.id.request_end_date)
         destinationDescription = findViewById(R.id.destination_description_data)
-        destinationOfficeId = findViewById(R.id.destination_office_id_data)
         destinationSeatPlace = findViewById(R.id.destination_seat_place_data)
         ticketURL = findViewById(R.id.ticket_URL_data)
         comment = findViewById(R.id.comment_data)
+    }
+
+    private fun getOfficesIds(array: List<String?>?): ArrayList<String> {
+        val res = ArrayList<String>()
+        if (array != null) {
+            for (e in array) {
+                val officeId: String = e.toString()
+                res.add(officeId)
+            }
+        }
+        return res
+    }
+    private fun getOffices(array: List<OfficeDB?>?): ArrayList<String> {
+        val res = ArrayList<String>()
+        if (array != null) {
+            for (e in array) {
+                val office: String = e.toString()
+                res.add(office)
+            }
+        }
+        return res
     }
 }
